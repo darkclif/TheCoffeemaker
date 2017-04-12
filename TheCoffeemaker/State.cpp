@@ -32,4 +32,9 @@ namespace CMaker {
 	{
 	}
 
+	Game * State::getGame()
+	{
+		return game;
+	}
+
 }

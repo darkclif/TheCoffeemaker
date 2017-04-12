@@ -23,6 +23,8 @@ namespace CMaker {
 		void reqPopState();
 		void reqStackClear();
 
+		float getFps() const;
+
 		StateMachine(Game* _game);
 		~StateMachine();
 
@@ -54,12 +56,22 @@ namespace CMaker {
 		}
 
 	private:
-		CMaker::Game* game;
+		/*	Global events functions 
+			@return True if you want to pass event further.
+		*/
+		bool onClose(sf::Event& _event);
 
+	private:
 		std::map< EnumState, std::function<State::Ptr()> >	stateFactory;
 		std::vector< std::unique_ptr<CMaker::State> >		stateStack;
 
 		std::stack< std::function<void()> >					delayedChanges;
+	
+	private:
+		CMaker::Game* game;
+
+		long int	ticks;
+		sf::Clock	beginClock;
 	};
 
 }

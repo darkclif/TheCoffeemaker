@@ -1,5 +1,7 @@
 #include "StateMachine.h"
 
+#include <iostream>
+
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -17,6 +19,7 @@ namespace CMaker {
 		sf::Time currTime;
 
 		this->applyPendingChanges();
+		this->beginClock.restart();
 
 		sf::Event event;
 		sf::RenderWindow& render = game->getRender();
@@ -28,21 +31,28 @@ namespace CMaker {
 					this->HandleStatesInput(event);
 				}
 			}
-
+			
 			// Update 
 			while(currTime.asSeconds() >= TICK_TIME.asSeconds()) {
 				currTime -= TICK_TIME;
+				this->ticks++;
 
 				this->UpdateStates(TICK_TIME);
 			}
 
 			// Render
 			this->RenderStates();
+			
+			// Engine actions
+			this->applyPendingChanges();
 
 			currTime += currClock.restart();
 		}
 	}
 
+	/*
+		STATES STACK MANIPULATE
+	*/
 	void StateMachine::PushState(EnumState _state)
 	{
 		stateStack.push_back(stateFactory.at(_state)());
@@ -95,7 +105,7 @@ namespace CMaker {
 	/*
 		CONSTRUCTOR / DESTRUCTOR
 	*/
-	StateMachine::StateMachine(Game* _game) : game{ _game }
+	StateMachine::StateMachine(Game* _game) : game{ _game }, ticks{0}
 	{
 		RegisterStates();
 	}
@@ -105,7 +115,7 @@ namespace CMaker {
 	}
 
 	/*
-		STATES MANAGMENT
+		STATES LOOP ACTIONS
 	*/
 	void StateMachine::UpdateStates(sf::Time _delta)
 	{
@@ -120,6 +130,9 @@ namespace CMaker {
 
 	void StateMachine::RenderStates()
 	{
+		sf::RenderWindow& render = game->getRender();
+		render.clear();
+
 		// Find first non transparent from the top
 		auto lowest_i = 0;
 		for (unsigned int i = stateStack.size() - 1; i >= 0; --i) {
@@ -134,6 +147,8 @@ namespace CMaker {
 		for (unsigned int i = lowest_i; i < stateStack.size(); ++i) {
 			stateStack[i]->Render();
 		}
+
+		render.display();
 	}
 
 	void StateMachine::HandleStatesInput(sf::Event& _event)
@@ -153,7 +168,30 @@ namespace CMaker {
 
 	bool StateMachine::HandleGlobalInput(sf::Event& _event)
 	{
+		switch (_event.type) {
+			/* Events */
+			case sf::Event::EventType::Closed: onClose(_event); break;
+
+			/* Keys */
+			case sf::Event::EventType::KeyPressed:
+				switch (_event.key.code) {
+					case sf::Keyboard::A: break;
+					case sf::Keyboard::B: break;
+					default: break;
+				}
+				break;
+			default: break;
+		}
+
 		return true;
 	}
 
+	/*
+		EVENTS
+	*/
+	bool StateMachine::onClose(sf::Event& _event) {
+		this->reqStackClear();
+
+		return false;
+	}
 }

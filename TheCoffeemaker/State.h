@@ -24,6 +24,9 @@ namespace CMaker {
 		virtual ~State();
 
 	protected:
+		Game* getGame();
+
+	private:
 		Game* game;
 
 		bool timeTrans; /* Pass time to states below */

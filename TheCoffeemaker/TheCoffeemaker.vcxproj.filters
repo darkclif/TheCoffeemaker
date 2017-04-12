@@ -31,6 +31,18 @@
     <Filter Include="Header Files\Tools">
       <UniqueIdentifier>{a32ec536-e708-4157-ada3-83ae7c694073}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ResourcesManager">
+      <UniqueIdentifier>{c8f9ee86-9b40-4324-869d-0ac42b2dc64d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourcesManager\SubManagers">
+      <UniqueIdentifier>{f0343482-7259-470b-8d55-053766cb464c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourcesManager">
+      <UniqueIdentifier>{e0eb1203-d5af-4829-a0c1-419c2105eacf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourcesManager\SubManagers">
+      <UniqueIdentifier>{d9997806-093a-492f-9b25-0535ec87048f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +60,18 @@
     <ClCompile Include="IntroState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Source Files\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\ResourcesManager</Filter>
+    </ClCompile>
+    <ClCompile Include="FontResManager.cpp">
+      <Filter>Source Files\ResourcesManager\SubManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureResManager.cpp">
+      <Filter>Source Files\ResourcesManager\SubManagers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -61,6 +85,18 @@
     </ClInclude>
     <ClInclude Include="IntroState.h">
       <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\ResourcesManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureResManager.h">
+      <Filter>Header Files\ResourcesManager\SubManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="FontResManager.h">
+      <Filter>Header Files\ResourcesManager\SubManagers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

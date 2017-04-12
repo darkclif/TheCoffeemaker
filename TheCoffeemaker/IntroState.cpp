@@ -1,5 +1,10 @@
 #include "IntroState.h"
 
+#include <TheCoffeeMaker/Game.h>
+#include <TheCoffeeMaker/ResourceManager.h>
+
+#include <SFML/Graphics.hpp>
+
 namespace CMaker {
 	/*
 		STATE MANAGMENT	
@@ -16,7 +21,15 @@ namespace CMaker {
 
 	void IntroState::Render()
 	{
+		sf::RenderWindow& render = getGame()->getRender();
 
+		static sf::Text testTxt;
+
+		testTxt.setFont(ResourceMgr.getResource(Font::DEFAULT));
+		testTxt.setString("Hello Bubus!");
+		testTxt.setPosition(sf::Vector2f(100.f, 100.f));
+
+		render.draw(testTxt);
 	}
 
 	/*

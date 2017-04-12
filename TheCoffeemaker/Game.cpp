@@ -11,11 +11,17 @@ namespace CMaker {
 
 	sf::RenderWindow* Game::createRender()
 	{
-		sf::ContextSettings setWindow;
-		setWindow.antialiasingLevel = 8;
+		// Consts
+		const sf::VideoMode VIDEO_MODE(800,600);
+		const int FRAME_LIMIT = 30;
+		const int ANTIALIASING = 8;
 
-		sf::RenderWindow* renWindow = new sf::RenderWindow(sf::VideoMode(1300, 1000), "SFML works!", sf::Style::Default, setWindow);
-		renWindow->setFramerateLimit(30);
+		// Setup render
+		sf::ContextSettings setWindow;
+		setWindow.antialiasingLevel = ANTIALIASING;
+
+		sf::RenderWindow* renWindow = new sf::RenderWindow(VIDEO_MODE, "SFML works!", sf::Style::Default, setWindow);
+		renWindow->setFramerateLimit(FRAME_LIMIT);
 		renWindow->resetGLStates();
 
 		return renWindow;

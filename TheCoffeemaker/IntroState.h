@@ -13,6 +13,7 @@ namespace CMaker {
 		IntroState(Game* _game);
 		IntroState(Game* _game, bool _timeTrans, bool _rendTrans);
 		~IntroState();
+
 	};
 
 }
