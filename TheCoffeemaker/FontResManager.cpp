@@ -4,7 +4,7 @@
 
 namespace CMaker{
 	/* PATHS */
-	const std::map< CMaker::Font, std::string > FontResManager::pathFonts = {
+	const std::map< CMaker::Font, std::string > FontResManager::paths = {
 		{ Font::DEFAULT, "fonts/8bit.ttf"}
 	};
 
@@ -13,8 +13,8 @@ namespace CMaker{
 	*/
 	sf::Font & FontResManager::getFont(CMaker::Font _font)
 	{
-		auto it = resFonts.find(_font);
-		if (it != resFonts.end()) {
+		auto it = resources.find(_font);
+		if (it != resources.end()) {
 			return it->second;
 		}
 		else {
@@ -32,8 +32,8 @@ namespace CMaker{
 		// Get path to this font
 		std::string fontPath;
 
-		auto it = pathFonts.find(_font);
-		if (it != pathFonts.end()) {
+		auto it = paths.find(_font);
+		if (it != paths.end()) {
 			fontPath = it->second;
 		}
 		else {
@@ -47,7 +47,7 @@ namespace CMaker{
 			throw new std::exception(msg.c_str());
 		}
 
-		resFonts.insert(std::make_pair(_font, tmpFont));
+		resources.insert(std::make_pair(_font, tmpFont));
 	}
 
 	/*

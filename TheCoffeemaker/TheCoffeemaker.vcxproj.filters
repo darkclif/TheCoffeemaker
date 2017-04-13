@@ -43,6 +43,12 @@
     <Filter Include="Source Files\ResourcesManager\SubManagers">
       <UniqueIdentifier>{d9997806-093a-492f-9b25-0535ec87048f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Units">
+      <UniqueIdentifier>{c4e768b1-61e4-4d49-8f40-05af314b48be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Units">
+      <UniqueIdentifier>{8865b0a3-4633-48d8-ad7a-46833c8967b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

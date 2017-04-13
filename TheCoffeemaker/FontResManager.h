@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <map>
-#include <memory>
 
 #include <SFML/Graphics.hpp>
 
@@ -24,8 +23,8 @@ namespace CMaker {
 	private:
 		void loadFont(CMaker::Font _font);
 
-		std::map< CMaker::Font, sf::Font > resFonts;
-		static const std::map< CMaker::Font, std::string > pathFonts;
+		std::map< CMaker::Font, sf::Font > resources;
+		static const std::map< CMaker::Font, std::string > paths;
 	};
 
 }

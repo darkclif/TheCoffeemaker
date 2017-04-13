@@ -168,22 +168,22 @@ namespace CMaker {
 
 	bool StateMachine::HandleGlobalInput(sf::Event& _event)
 	{
-		switch (_event.type) {
-			/* Events */
-			case sf::Event::EventType::Closed: onClose(_event); break;
+			switch (_event.type) {
+				/* Events */
+				case sf::Event::EventType::Closed: onClose(_event); break;
 
-			/* Keys */
-			case sf::Event::EventType::KeyPressed:
-				switch (_event.key.code) {
-					case sf::Keyboard::A: break;
-					case sf::Keyboard::B: break;
-					default: break;
-				}
-				break;
-			default: break;
-		}
+				/* Keys */
+				case sf::Event::EventType::KeyPressed:
+					switch (_event.key.code) {
+						case sf::Keyboard::A: break;
+						case sf::Keyboard::B: break;
+						default: break;
+					}
+					break;
+				default: break;
+			}
 
-		return true;
+			return true;
 	}
 
 	/*

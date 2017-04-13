@@ -9,6 +9,11 @@ namespace CMaker {
 		return fontManager.getFont(_font);
 	}
 
+	sf::Texture & ResourceManager::getResource(CMaker::Texture _text)
+	{
+		return textManager.getTexture(_text);
+	}
+
 	/*
 	sf::Font & ResourceManager::getResource(CMaker::Font _font)
 	{

@@ -19,14 +19,14 @@ namespace CMaker {
 
 		// Resources handlers
 		sf::Font&		getResource(CMaker::Font _font);
-		//sf::Texture&	getResource();
+		sf::Texture&	getResource(CMaker::Texture _text);
 
 		ResourceManager();
 		~ResourceManager();
 
 	private:
 		FontResManager fontManager;
-		//TextureResManager textManager;
+		TextureResManager textManager;
 
 		// Singleton
 		ResourceManager(const ResourceManager &) = delete;
