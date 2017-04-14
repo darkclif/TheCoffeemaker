@@ -78,28 +78,32 @@ namespace CMaker {
 	*/
 	void StateMachine::reqPushState(EnumState _state)
 	{
-		delayedChanges.push([this, _state]() -> void { PushState(_state); });
+		delayedChanges.push_back([this, _state]() -> void { PushState(_state); });
 	}
 
 	void StateMachine::reqPopState()
 	{
-		delayedChanges.push([this]() -> void { PopState(); });
+		delayedChanges.push_back([this]() -> void { PopState(); });
 	}
 
 	void StateMachine::reqStackClear()
 	{
-		delayedChanges.push([this]() -> void { StackClear(); });
+		delayedChanges.push_back([this]() -> void { StackClear(); });
+	}
+
+	float StateMachine::getFps() const
+	{
+		return ((float)ticks/beginClock.getElapsedTime().asSeconds());
 	}
 
 	void StateMachine::applyPendingChanges()
 	{
-		while (!delayedChanges.empty()) {
+		for(auto& it : delayedChanges) {
 			// Execute stored delayed action
-			auto action = delayedChanges.top();
-			action();
-
-			delayedChanges.pop();
+			it();
 		}
+
+		delayedChanges.clear();
 	}
 
 	/*

@@ -9,6 +9,8 @@ namespace CMaker {
 	
 	/* TEXTURES */
 	enum class Texture {
+		NONE, /* Blank texture */
+
 		SMALL_LOGO
 	};
 

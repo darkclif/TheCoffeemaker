@@ -43,11 +43,29 @@
     <Filter Include="Source Files\ResourcesManager\SubManagers">
       <UniqueIdentifier>{d9997806-093a-492f-9b25-0535ec87048f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Units">
+    <Filter Include="Header Files\Entities">
       <UniqueIdentifier>{c4e768b1-61e4-4d49-8f40-05af314b48be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Units">
+    <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{8865b0a3-4633-48d8-ad7a-46833c8967b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Basic">
+      <UniqueIdentifier>{f251aefa-7db7-4402-a415-8c0bdb75a38e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Basic">
+      <UniqueIdentifier>{88e80347-c18c-44a4-b0c4-26bfb0f8d7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\AnimEngine">
+      <UniqueIdentifier>{9c8ba2a8-359e-410c-a3d2-f8f83c1335d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\AnimEngine">
+      <UniqueIdentifier>{7df98332-fd0e-4c58-ad17-483b03d7aeea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\AnimEngine\Animations">
+      <UniqueIdentifier>{25a3935e-51a7-43df-9f98-fad75ee5d463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\AnimEngine\Animations">
+      <UniqueIdentifier>{28251ab0-332b-42bf-8fca-575198f56575}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +96,21 @@
     <ClCompile Include="TextureResManager.cpp">
       <Filter>Source Files\ResourcesManager\SubManagers</Filter>
     </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Source Files\Entities\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="Updatable.cpp">
+      <Filter>Source Files\Entities\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Entities\AnimEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationEngine.cpp">
+      <Filter>Source Files\Entities\AnimEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -103,6 +136,21 @@
     </ClInclude>
     <ClInclude Include="FontResManager.h">
       <Filter>Header Files\ResourcesManager\SubManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Header Files\Entities\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Updatable.h">
+      <Filter>Header Files\Entities\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Entities\AnimEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationEngine.h">
+      <Filter>Header Files\Entities\AnimEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

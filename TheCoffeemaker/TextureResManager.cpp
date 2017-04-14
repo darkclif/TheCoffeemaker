@@ -6,7 +6,8 @@
 namespace CMaker {
 	/* PATHS */
 	const std::map< CMaker::Texture, std::string > TextureResManager::paths = {
-		{ Texture::SMALL_LOGO, "textures/small_logo.png" }
+		{ Texture::SMALL_LOGO, "textures/small_logo.png" },
+		{ Texture::NONE, "textures/none.png" }
 	};
 
 	sf::Texture & TextureResManager::getTexture(CMaker::Texture _tex)
