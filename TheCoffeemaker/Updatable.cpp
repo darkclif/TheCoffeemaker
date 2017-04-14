@@ -2,6 +2,12 @@
 
 namespace CMaker {
 
+	/* Update time */
+	void Updatable::Update(sf::Time _time)
+	{
+		addTime(_time);
+	}
+
 	/*
 		Constructor / Destructor
 	*/

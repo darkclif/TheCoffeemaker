@@ -117,6 +117,9 @@
     <ClCompile Include="transFade.cpp">
       <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
+    <ClCompile Include="Cinamon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -162,6 +165,12 @@
       <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
     </ClInclude>
     <ClInclude Include="transFade.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="Cinamon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transforms.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
   </ItemGroup>

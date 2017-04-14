@@ -9,7 +9,7 @@ namespace CMaker {
 		public sf::Sprite
 	{
 	public:
-		void virtual		Draw(sf::RenderWindow& _render) = 0;
+		void virtual		Draw(sf::RenderWindow& _render);
 
 							Unit();
 							Unit(CMaker::Texture _enumTexture, sf::Vector2f _pos);

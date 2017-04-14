@@ -3,7 +3,7 @@
 
 namespace CMaker {
 	/* Transform entity */
-	sf::Time transFade::operator()(sf::Time _time, CMaker::SimpleAnimation* _entity)
+	sf::Time transFade::Apply(sf::Time _time, CMaker::SimpleAnimation* _entity)
 	{
 		// Transform is updated first time, get initial alpha value
 		if (getTime() == sf::Time::Zero) {
@@ -13,8 +13,10 @@ namespace CMaker {
 		Update(_time);
 
 		// Exit if finished
-		if (getTime() >= getLength()) {
-			return (getTime() - getLength());
+		sf::Time timeAbove = (getTime() - getLength());
+		if (timeAbove > sf::Time::Zero) {
+			Reset();
+			return timeAbove;
 		}
 		
 		// Interpolate alpha

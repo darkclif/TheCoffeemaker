@@ -8,14 +8,14 @@ namespace CMaker {
 		public AnimateEntity
 	{
 	public:
-								SimpleAnimation();
-								~SimpleAnimation();
+		void						Update(sf::Time _time) override;
+
+									SimpleAnimation(CMaker::Texture _enumTexture, sf::Vector2f _pos);
+									SimpleAnimation();
+		virtual						~SimpleAnimation();
 
 	protected:
-		// TODO:
-
-	private:
-		CMaker::AnimationEngine	animEngine;
+		CMaker::AnimationEngine		animationEngine;
 	};
 
 }

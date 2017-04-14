@@ -21,37 +21,27 @@ namespace CMaker {
 
 	void IntroState::Update(const sf::Time _time)
 	{
-
+		cupCinamon->Update(_time);
 	}
 
 	void IntroState::Render()
 	{
 		sf::RenderWindow& render = getGame()->getRender();
 
-		sf::Text testTxt;
-
-		testTxt.setFont(ResourceMgr.getResource(Font::DEFAULT));
-		testTxt.setString("Hello Bubus!");
-		testTxt.setPosition(sf::Vector2f(100.f, 100.f));
-
-		sf::Sprite testSprite;
-
-		testSprite.setTexture(ResourceMgr.getResource(Texture::SMALL_LOGO));
-		testSprite.setPosition(sf::Vector2f(100.f, 300.f));
-		testSprite.setScale(0.5f, 0.5f);
-
-		render.draw(testTxt);
-		render.draw(testSprite);
+		cupCinamon->Draw(render);
 	}
 
 	/*
-		CONSTRUCTOR / DESTRUCTOR
+		Constructor / Destructor
 	*/
-	IntroState::IntroState(Game* _game) : State(_game){
-	
+	IntroState::IntroState(Game* _game) : State(_game)
+	{
+		cupCinamon = std::make_unique<CMaker::Cinamon>(sf::Vector2f(100.f, 100.f));
 	}
 
-	IntroState::IntroState(Game* _game, bool _timeTrans, bool _rendTrans) : State(_game, _timeTrans, _rendTrans){
+	IntroState::IntroState(Game* _game, bool _timeTrans, bool _rendTrans): 
+		State(_game, _timeTrans, _rendTrans)
+	{
 
 	}
 
@@ -61,7 +51,7 @@ namespace CMaker {
 	}
 
 	/*
-		EVENTS
+		Events
 	*/
 	void IntroState::endIntro(const sf::Event&) {
 		this->getGame()->getStateMachine().reqPopState();

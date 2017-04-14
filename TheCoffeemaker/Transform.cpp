@@ -1,10 +1,6 @@
 #include "Transform.h"
 
 namespace CMaker {
-	void Transform::Update(sf::Time _time)
-	{
-		addTime(_time);
-	}
 
 	sf::Time Transform::getLength()
 	{

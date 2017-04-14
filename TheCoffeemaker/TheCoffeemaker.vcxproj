@@ -122,6 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimateEntity.cpp" />
+    <ClCompile Include="Cinamon.cpp" />
     <ClCompile Include="transFade.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="AnimationEngine.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimateEntity.h" />
+    <ClInclude Include="Cinamon.h" />
     <ClInclude Include="transFade.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="AnimationEngine.h" />
@@ -152,6 +154,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="TextureResManager.h" />
+    <ClInclude Include="Transforms.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Updatable.h" />
   </ItemGroup>

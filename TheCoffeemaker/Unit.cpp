@@ -30,6 +30,11 @@ namespace CMaker {
 		return visible;
 	}
 
+	void Unit::Draw(sf::RenderWindow & _render)
+	{
+		_render.draw(*this);
+	}
+
 	/*
 		Access texture and set texture enum
 	*/
@@ -44,13 +49,13 @@ namespace CMaker {
 		return enumTexture;
 	}
 
-	// Load texture from ResourceManager
+	/* Load texture from ResourceManager */
 	void Unit::loadTexture()
 	{
 		setTexture(ResourceMgr.getResource(this->enumTexture));
 	}
 
-	// Set visibility 
+	/* Set visibility */
 	void Unit::Show(bool _show)
 	{
 		visible = _show;

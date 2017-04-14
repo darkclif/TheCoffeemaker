@@ -9,8 +9,9 @@ namespace CMaker {
 		public Unit
 	{
 	public:
-		AnimateEntity();
-		virtual ~AnimateEntity();
+							AnimateEntity(CMaker::Texture _enumTexture, sf::Vector2f _pos);
+							AnimateEntity();
+		virtual				~AnimateEntity();
 	};
 
 }

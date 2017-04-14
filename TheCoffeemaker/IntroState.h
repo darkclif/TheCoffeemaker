@@ -1,5 +1,8 @@
 #pragma once
+#include <memory>
+
 #include <TheCoffeeMaker/State.h>
+#include <TheCoffeeMaker/Cinamon.h>
 
 namespace CMaker {
 
@@ -10,13 +13,17 @@ namespace CMaker {
 		void Update(const sf::Time _time);
 		void Render();
 
-		IntroState(Game* _game);
-		IntroState(Game* _game, bool _timeTrans, bool _rendTrans);
-		~IntroState();
+								IntroState(Game* _game);
+								IntroState(Game* _game, bool _timeTrans, bool _rendTrans);
+								~IntroState();
 	
 	private:
+		/* Units */
+		std::unique_ptr< CMaker::Cinamon >	
+								cupCinamon;
+
 		/* Events */
-		void endIntro(const sf::Event&);
+		void					endIntro(const sf::Event&);
 	};
 
 }

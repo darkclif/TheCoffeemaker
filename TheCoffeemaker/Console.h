@@ -16,6 +16,10 @@ namespace CMaker {
 		#define C_DEBUG CMaker::Console::debug
 		#define C_INFO CMaker::Console::info
 
+		// Console shortcuts
+		#define S_ERROR "ERROR: "
+		#define S_WARNING "WARNING: "
+
 		// Save debug and info
 		class Log {
 		public:

@@ -8,7 +8,7 @@ namespace CMaker {
 		public Transform
 	{
 	public:
-		sf::Time			operator()(sf::Time _time, CMaker::SimpleAnimation* _entity) override;
+		sf::Time			Apply(sf::Time _time, CMaker::SimpleAnimation* _entity) override;
 
 							transFade(sf::Uint8 _targetAlpha, sf::Time _length);
 							~transFade();

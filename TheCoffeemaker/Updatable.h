@@ -7,7 +7,7 @@ namespace CMaker {
 	class Updatable
 	{
 	public:
-		void virtual		Update(sf::Time _time) = 0;
+		void virtual		Update(sf::Time _time);
 
 							Updatable();
 		virtual 			~Updatable();

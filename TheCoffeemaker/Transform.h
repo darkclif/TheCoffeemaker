@@ -11,7 +11,7 @@ namespace CMaker {
 		/* Transform entity 
 			@return Time left, that transform did not consume.
 		*/
-		sf::Time virtual		operator()(sf::Time _time, CMaker::SimpleAnimation* _entity) = 0;
+		sf::Time virtual		Apply(sf::Time _time, CMaker::SimpleAnimation* _entity) = 0;
 
 		void					Reset();
 
@@ -19,8 +19,6 @@ namespace CMaker {
 		virtual					~Transform();
 
 	protected:
-		void					Update(sf::Time _time) override;
-
 		sf::Time				getLength();
 
 	private:
