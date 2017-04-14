@@ -2,7 +2,8 @@
 
 namespace CMaker {
 
-	SimpleAnimation::SimpleAnimation()
+	SimpleAnimation::SimpleAnimation(): 
+		animEngine(this)
 	{
 	}
 

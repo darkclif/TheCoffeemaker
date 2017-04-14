@@ -2,19 +2,26 @@
 #include <map>
 #include <vector>
 
-#include <TheCoffeeMaker/Animation.h>
+#include <TheCoffeeMaker/Transform.h>
+#include <TheCoffeeMaker/Updatable.h>
 
 namespace CMaker {
+	class SimpleAnimation;
 
-	template <typename E>
-	class AnimationEngine
+	class AnimationEngine:
+		public Updatable
 	{
 	public:
-		AnimationEngine(/* SimpleAnimation& _entity */) {};
-		~AnimationEngine() {};
+		void Update(sf::Time _time) override;
+
+		AnimationEngine(CMaker::SimpleAnimation* _entity);
+		~AnimationEngine();
 
 	private:
-		std::map< E, std::vector< CMaker::Animation > > mapAnimations;
+		/* Entity to apply animations */
+		CMaker::SimpleAnimation*							entity;
+
+		std::map< int, std::vector< CMaker::Transform > >	mapAnimations;
 	};
 
 }

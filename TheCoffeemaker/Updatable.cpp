@@ -18,9 +18,14 @@ namespace CMaker {
 	/*
 		Manage time
 	*/
-	void Updatable::setTime(sf::Time _time)
+	void Updatable::addTime(sf::Time _time)
 	{
-		time = _time;
+		time += _time;
+	}
+
+	void Updatable::resetTime()
+	{
+		time = sf::Time();
 	}
 
 	sf::Time Updatable::getTime()

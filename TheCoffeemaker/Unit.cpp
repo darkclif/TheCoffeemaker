@@ -25,6 +25,11 @@ namespace CMaker {
 	{
 	}
 
+	bool Unit::isVisible()
+	{
+		return visible;
+	}
+
 	/*
 		Access texture and set texture enum
 	*/

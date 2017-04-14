@@ -6,7 +6,7 @@
 namespace CMaker {
 
 	class Unit: 
-		protected sf::Sprite
+		public sf::Sprite
 	{
 	public:
 		void virtual		Draw(sf::RenderWindow& _render) = 0;
@@ -15,6 +15,8 @@ namespace CMaker {
 							Unit(CMaker::Texture _enumTexture, sf::Vector2f _pos);
 		virtual				~Unit();
 	
+		bool				isVisible();
+
 	protected:
 		void				setTextureEnum(CMaker::Texture _enumTexture);
 		CMaker::Texture		getTextureEnum();
@@ -22,7 +24,7 @@ namespace CMaker {
 		void				Show(bool _show);
 
 	private:
-		using sf::Sprite::setTexture; /* Make this function private, change inherited (protected) access */
+		using				sf::Sprite::setTexture; /* Make this function private, change inherited (protected) access */
 		void				loadTexture();
 
 		bool				visible;

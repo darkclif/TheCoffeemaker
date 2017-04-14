@@ -13,7 +13,8 @@ namespace CMaker {
 		virtual 			~Updatable();
 
 	protected:
-		void				setTime(sf::Time _time);
+		void				addTime(sf::Time _time);
+		void				resetTime();
 		sf::Time			getTime();
 
 	private:

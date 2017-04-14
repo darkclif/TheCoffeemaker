@@ -1,17 +1,21 @@
 #pragma once
-#include <TheCoffeeMaker/Updatable.h>
-#include <TheCoffeeMaker/Unit.h>
+#include <TheCoffeeMaker/AnimateEntity.h>
+#include <TheCoffeeMaker/AnimationEngine.h>
 
 namespace CMaker {
 
 	class SimpleAnimation:
-		public Updatable,
-		public Unit
+		public AnimateEntity
 	{
 	public:
+								SimpleAnimation();
+								~SimpleAnimation();
 
-		SimpleAnimation();
-		~SimpleAnimation();
+	protected:
+		// TODO:
+
+	private:
+		CMaker::AnimationEngine	animEngine;
 	};
 
 }

@@ -121,7 +121,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimateEntity.cpp" />
+    <ClCompile Include="transFade.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="AnimationEngine.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="FontResManager.cpp" />
@@ -137,7 +139,9 @@
     <ClCompile Include="Updatable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimateEntity.h" />
+    <ClInclude Include="transFade.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="AnimationEngine.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="FontResManager.h" />
