@@ -1,7 +1,7 @@
 #include "transWait.h"
 
 namespace CMaker {
-	sf::Time transWait::Apply(sf::Time _time, CMaker::SimpleAnimation * _entity)
+	sf::Time transWait::Apply(sf::Time _time, CMaker::Animation * _entity)
 	{
 		Update(_time);
 

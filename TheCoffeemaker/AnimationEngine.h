@@ -7,7 +7,7 @@
 #include <TheCoffeeMaker/Updatable.h>
 
 namespace CMaker {
-	class SimpleAnimation;
+	class Animation;
 	class transGoto;
 
 	class AnimationEngine:
@@ -35,7 +35,7 @@ namespace CMaker {
 		void						setRunning(bool _running);
 
 		/* Constructor / Destructor */
-									AnimationEngine(CMaker::SimpleAnimation* _entity);
+									AnimationEngine(CMaker::Animation* _entity);
 									~AnimationEngine();
 
 	private:
@@ -46,15 +46,15 @@ namespace CMaker {
 		void						goToTransform(int _label);
 
 		/* Entity to apply animation transforms */
-		CMaker::SimpleAnimation*	entity;
+		CMaker::Animation*	entity;
 
 		/* Map of different animations, each animation have its own sequence of transforms */
 		std::map< /* Animation*/ int, std::vector< std::unique_ptr< CMaker::Transform > > >	
 									mapAnimations;
 
 		/* Current running animation */
-		int							currAnimation;
-		int							currTransform;
+		sf::Uint32					currAnimation;
+		sf::Uint32					currTransform;
 
 		/* Is engine running */
 		bool						running;

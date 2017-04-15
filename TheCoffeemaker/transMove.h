@@ -7,7 +7,7 @@ namespace CMaker {
 		public Transform
 	{
 	public:
-		sf::Time			Apply(sf::Time _time, CMaker::SimpleAnimation* _entity) override;
+		sf::Time			Apply(sf::Time _time, CMaker::Animation* _entity) override;
 							
 							transMove(sf::Vector2f _pos, sf::Time _length);
 							~transMove();

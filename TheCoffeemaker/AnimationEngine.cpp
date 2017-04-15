@@ -112,7 +112,7 @@ namespace CMaker {
 	/*
 		Constructor / Destructor
 	*/
-	AnimationEngine::AnimationEngine(CMaker::SimpleAnimation* _entity): 
+	AnimationEngine::AnimationEngine(CMaker::Animation* _entity): 
 		entity{ _entity },
 		running{ true },
 		currAnimation{ 0 },

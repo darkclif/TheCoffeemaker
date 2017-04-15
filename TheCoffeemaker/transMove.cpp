@@ -1,9 +1,9 @@
 #include "transMove.h"
-#include <TheCoffeeMaker/SimpleAnimation.h>
+#include <TheCoffeeMaker/Animation.h>
 
 namespace CMaker {
 	/* Transform entity */
-	sf::Time transMove::Apply(sf::Time _time, CMaker::SimpleAnimation * _entity)
+	sf::Time transMove::Apply(sf::Time _time, CMaker::Animation * _entity)
 	{
 		// Transform is updated first time, get initial position
 		if (getTime() == sf::Time::Zero) {

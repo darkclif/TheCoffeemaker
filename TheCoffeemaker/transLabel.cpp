@@ -1,7 +1,7 @@
 #include "transLabel.h"
 
 namespace CMaker {
-	sf::Time transLabel::Apply(sf::Time _time, CMaker::SimpleAnimation * _entity)
+	sf::Time transLabel::Apply(sf::Time _time, CMaker::Animation * _entity)
 	{
 		return _time;
 	}

@@ -2,7 +2,7 @@
 #include <TheCoffeeMaker/AnimationEngine.h>
 
 namespace CMaker {
-	sf::Time transGoto::Apply(sf::Time _time, CMaker::SimpleAnimation * _entity)
+	sf::Time transGoto::Apply(sf::Time _time, CMaker::Animation * _entity)
 	{
 		engine->goToTransform(targetTransLabel);
 

@@ -4,14 +4,14 @@
 
 namespace CMaker {
 
-	class AnimateEntity:
+	class UpdatableUnit:
 		public Updatable,
 		public Unit
 	{
 	public:
-							AnimateEntity(CMaker::Texture _enumTexture, sf::Vector2f _pos);
-							AnimateEntity();
-		virtual				~AnimateEntity();
+							UpdatableUnit(CMaker::Texture _enumTexture, sf::Vector2f _pos);
+							UpdatableUnit();
+		virtual				~UpdatableUnit();
 	};
 
 }

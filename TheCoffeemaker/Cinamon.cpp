@@ -5,7 +5,7 @@
 namespace CMaker {
 
 	Cinamon::Cinamon(sf::Vector2f _pos):
-		SimpleAnimation(CMaker::Texture::SMALL_LOGO, _pos)
+		Animation(CMaker::Texture::SMALL_LOGO, _pos)
 	{
 		setOriginAlign();
 		setColorAlpha(0);

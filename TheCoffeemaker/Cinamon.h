@@ -1,10 +1,10 @@
 #pragma once
-#include <TheCoffeeMaker/SimpleAnimation.h>
+#include <TheCoffeeMaker/Animation.h>
 
 namespace CMaker {
 
 	class Cinamon:
-		public SimpleAnimation
+		public Animation
 	{
 	public:
 

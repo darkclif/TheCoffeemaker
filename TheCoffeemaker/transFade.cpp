@@ -1,9 +1,9 @@
 #include "transFade.h"
-#include <TheCoffeeMaker/SimpleAnimation.h>
+#include <TheCoffeeMaker/Animation.h>
 
 namespace CMaker {
 	/* Transform entity */
-	sf::Time transFade::Apply(sf::Time _time, CMaker::SimpleAnimation* _entity)
+	sf::Time transFade::Apply(sf::Time _time, CMaker::Animation* _entity)
 	{
 		// Transform is updated first time, get initial alpha value
 		if (getTime() == sf::Time::Zero) {

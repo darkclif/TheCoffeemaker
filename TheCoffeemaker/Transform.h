@@ -2,7 +2,7 @@
 #include <TheCoffeeMaker/Updatable.h>
 
 namespace CMaker {
-	class SimpleAnimation;
+	class Animation;
 
 	class Transform:
 		protected Updatable
@@ -11,7 +11,7 @@ namespace CMaker {
 		/* Transform entity 
 			@return Time left, that transform did not consume.
 		*/
-		sf::Time virtual		Apply(sf::Time _time, CMaker::SimpleAnimation* _entity) = 0;
+		sf::Time virtual		Apply(sf::Time _time, CMaker::Animation* _entity) = 0;
 
 		void					Reset();
 

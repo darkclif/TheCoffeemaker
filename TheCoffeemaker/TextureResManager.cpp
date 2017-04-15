@@ -22,7 +22,15 @@ namespace CMaker {
 				return getTexture(_tex);
 			}
 			catch (std::exception e) {
-				C_DEBUG << "Exception when loading font: " << e.what() << std::endl;
+				C_DEBUG << S_ERROR << "Exception when loading texture: " << e.what() << std::endl;
+				C_DEBUG << S_ERROR << "Texture::NONE loaded instead." << std::endl;
+				
+				if (_tex != Texture::NONE) {
+					return getTexture(Texture::NONE);
+				}
+				else {
+					throw std::exception("Fatal: Cannot load Texture::NONE texture.");
+				}
 			}
 		}
 	}

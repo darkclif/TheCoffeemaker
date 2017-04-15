@@ -105,12 +105,6 @@
     <ClCompile Include="Updatable.cpp">
       <Filter>Source Files\Entity\EntityBase</Filter>
     </ClCompile>
-    <ClCompile Include="AnimateEntity.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleAnimation.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
     </ClCompile>
@@ -132,8 +126,17 @@
     <ClCompile Include="transLabel.cpp">
       <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
+    <ClCompile Include="UpdatableUnit.cpp">
+      <Filter>Source Files\Entity\EntityBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Entity\EntityBase</Filter>
+    </ClCompile>
     <ClCompile Include="transWait.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>Source Files\Entity\EntityBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,12 +173,6 @@
     <ClInclude Include="Updatable.h">
       <Filter>Header Files\Entity\EntityBase</Filter>
     </ClInclude>
-    <ClInclude Include="AnimateEntity.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleAnimation.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
     </ClInclude>
@@ -200,8 +197,17 @@
     <ClInclude Include="transLabel.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
+    <ClInclude Include="UpdatableUnit.h">
+      <Filter>Header Files\Entity\EntityBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Entity\EntityBase</Filter>
+    </ClInclude>
     <ClInclude Include="transWait.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Header Files\Entity\EntityBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
