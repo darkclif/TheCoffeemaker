@@ -121,7 +121,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationFactory.cpp" />
     <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="SimpleAnimation.cpp" />
     <ClCompile Include="UpdatableUnit.cpp" />
     <ClCompile Include="Cinamon.cpp" />
     <ClCompile Include="transFade.cpp" />
@@ -146,7 +148,9 @@
     <ClCompile Include="Updatable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationFactory.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="SimpleAnimation.h" />
     <ClInclude Include="UpdatableUnit.h" />
     <ClInclude Include="Cinamon.h" />
     <ClInclude Include="transFade.h" />

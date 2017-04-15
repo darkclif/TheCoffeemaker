@@ -21,14 +21,16 @@ namespace CMaker {
 
 	void IntroState::Update(const sf::Time _time)
 	{
-		cupCinamon->Update(_time);
+		logoFoczkaEngine->Update(_time);
+		logoTech->Update(_time);
 	}
 
 	void IntroState::Render()
 	{
 		sf::RenderWindow& render = getGame()->getRender();
 
-		cupCinamon->Draw(render);
+		logoFoczkaEngine->Draw(render);
+		logoTech->Draw(render);
 	}
 
 	/*
@@ -36,7 +38,17 @@ namespace CMaker {
 	*/
 	IntroState::IntroState(Game* _game) : State(_game)
 	{
-		cupCinamon = std::make_unique<CMaker::Cinamon>(sf::Vector2f(100.f, 100.f));
+		logoFoczkaEngine = std::make_unique<CMaker::SimpleAnimation>(CMaker::Texture::FOCZKA_ENGINE_LOGO);
+		logoFoczkaEngine->setColorAlpha(0);
+		logoFoczkaEngine->setPosition(getGame()->getRender().getView().getCenter() - sf::Vector2f(0.f, 80.f));
+		logoFoczkaEngine->setOriginAlign(CMaker::OriginAlign::MIDDLE_CENTER);
+		logoFoczkaEngine->loadAnimation<CMaker::AnimationFactory::PredefAnimation::SHOW_FADE>();
+
+		logoTech = std::make_unique<CMaker::SimpleAnimation>(CMaker::Texture::TECH_LOGOS);
+		logoTech->setColorAlpha(0);
+		logoTech->setPosition(getGame()->getRender().getView().getCenter() + sf::Vector2f(0.f, 120.f));
+		logoTech->setOriginAlign(CMaker::OriginAlign::MIDDLE_CENTER);
+		logoTech->loadAnimation<CMaker::AnimationFactory::PredefAnimation::SHOW_FADE>();
 	}
 
 	IntroState::IntroState(Game* _game, bool _timeTrans, bool _rendTrans): 

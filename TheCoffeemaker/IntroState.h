@@ -2,7 +2,9 @@
 #include <memory>
 
 #include <TheCoffeeMaker/State.h>
+
 #include <TheCoffeeMaker/Cinamon.h>
+#include <TheCoffeeMaker/SimpleAnimation.h>
 
 namespace CMaker {
 
@@ -19,8 +21,8 @@ namespace CMaker {
 	
 	private:
 		/* Units */
-		std::unique_ptr< CMaker::Cinamon >	
-								cupCinamon;
+		std::unique_ptr< CMaker::SimpleAnimation >	logoFoczkaEngine;
+		std::unique_ptr< CMaker::SimpleAnimation >	logoTech;
 
 		/* Events */
 		void					endIntro(const sf::Event&);

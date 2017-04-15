@@ -86,7 +86,7 @@ namespace CMaker {
 	}
 
 	/* Set visibility */
-	void Unit::Show(bool _show)
+	void Unit::setVisible(bool _show)
 	{
 		visible = _show;
 	}

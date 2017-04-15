@@ -4,7 +4,7 @@ namespace CMaker {
 	void Animation::Update(sf::Time _time)
 	{
 		Updatable::Update(_time);
-
+		
 		animationEngine.Update(_time);
 	}
 

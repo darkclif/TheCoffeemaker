@@ -138,6 +138,12 @@
     <ClCompile Include="Drawable.cpp">
       <Filter>Source Files\Entity\EntityBase</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleAnimation.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -208,6 +214,12 @@
     </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>Header Files\Entity\EntityBase</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationFactory.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
