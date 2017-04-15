@@ -3,18 +3,18 @@
 
 namespace CMaker {
 
-	class transFade :
+	class transMove:
 		public Transform
 	{
 	public:
 		sf::Time			Apply(sf::Time _time, CMaker::SimpleAnimation* _entity) override;
-
-							transFade(sf::Uint8 _targetAlpha, sf::Time _length);
-							~transFade();
+							
+							transMove(sf::Vector2f _pos, sf::Time _length);
+							~transMove();
 
 	private:
-		sf::Uint8			targetAlpha;
-		sf::Uint8			startAlpha;
+		sf::Vector2f		targetPosition;
+		sf::Vector2f		startPosition;
 	};
 
 }

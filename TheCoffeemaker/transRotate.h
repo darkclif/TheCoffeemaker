@@ -3,18 +3,18 @@
 
 namespace CMaker {
 
-	class transFade :
+	class transRotate :
 		public Transform
 	{
 	public:
 		sf::Time			Apply(sf::Time _time, CMaker::SimpleAnimation* _entity) override;
 
-							transFade(sf::Uint8 _targetAlpha, sf::Time _length);
-							~transFade();
+							transRotate(float _rotation, sf::Time _length);
+							~transRotate();
 
 	private:
-		sf::Uint8			targetAlpha;
-		sf::Uint8			startAlpha;
+		float				startRotation;
+		float				targetRotation;
 	};
 
 }

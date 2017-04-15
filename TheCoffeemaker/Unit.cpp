@@ -30,6 +30,29 @@ namespace CMaker {
 		return visible;
 	}
 
+	void Unit::setOriginAlign(OriginAlign _align)
+	{
+		sf::FloatRect lRect = getLocalBounds();
+		sf::Vector2f lOrig;
+
+		switch (_align) {
+			case OriginAlign::TOP_LEFT: lOrig = sf::Vector2f(0.f, 0.f); break;
+			case OriginAlign::TOP_CENTER: lOrig = sf::Vector2f(lRect.width / 2.f, 0.f); break;
+			case OriginAlign::TOP_RIGHT: lOrig = sf::Vector2f(lRect.width, 0.f); break;
+
+			case OriginAlign::MIDDLE_LEFT: lOrig = sf::Vector2f(0.f, lRect.height / 2.f); break;
+			case OriginAlign::MIDDLE_CENTER: lOrig = sf::Vector2f(lRect.width / 2.f, lRect.height / 2.f); break;
+			case OriginAlign::MIDDLE_RIGHT: lOrig = sf::Vector2f(lRect.width, lRect.height / 2.f); break;
+
+			case OriginAlign::BOTTOM_LEFT: lOrig = sf::Vector2f(0.f, lRect.height); break;
+			case OriginAlign::BOTTOM_CENTER: lOrig = sf::Vector2f(lRect.width / 2.f, lRect.height); break;
+			case OriginAlign::BOTTOM_RIGHT: lOrig = sf::Vector2f(lRect.width, lRect.height); break;
+			default: break;
+		}
+
+		setOrigin(lOrig);
+	}
+
 	void Unit::Draw(sf::RenderWindow & _render)
 	{
 		_render.draw(*this);

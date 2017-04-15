@@ -117,8 +117,14 @@
     <ClCompile Include="transFade.cpp">
       <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
+    <ClCompile Include="transMove.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClCompile>
     <ClCompile Include="Cinamon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="transRotate.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,10 +173,16 @@
     <ClInclude Include="transFade.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
-    <ClInclude Include="Cinamon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Transforms.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="transMove.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="Cinamon.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="transRotate.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,17 @@ namespace CMaker {
 		public sf::Sprite
 	{
 	public:
+		enum class OriginAlign {
+			TOP_LEFT, TOP_CENTER, TOP_RIGHT,
+			MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT,
+			BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT
+		};
+
+	public:
 		void virtual		Draw(sf::RenderWindow& _render);
+
+		/* Set origin of sprite */
+		void				setOriginAlign(OriginAlign _align = OriginAlign::MIDDLE_CENTER);
 
 							Unit();
 							Unit(CMaker::Texture _enumTexture, sf::Vector2f _pos);
