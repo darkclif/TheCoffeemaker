@@ -7,6 +7,13 @@ namespace CMaker {
 	/*
 		Constructor / Destructor
 	*/
+	void Unit::setColorAlpha(sf::Uint8 _alpha)
+	{
+		sf::Color color = getColor();
+		color.a = _alpha;
+		setColor(color);
+	}
+
 	Unit::Unit():
 		enumTexture{ CMaker::Texture::NONE }
 	{

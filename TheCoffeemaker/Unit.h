@@ -21,6 +21,9 @@ namespace CMaker {
 		/* Set origin of sprite */
 		void				setOriginAlign(OriginAlign _align = OriginAlign::MIDDLE_CENTER);
 
+		/* Set color alpha */
+		void				setColorAlpha(sf::Uint8 _alpha);
+
 							Unit();
 							Unit(CMaker::Texture _enumTexture, sf::Vector2f _pos);
 		virtual				~Unit();

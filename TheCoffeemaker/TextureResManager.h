@@ -18,16 +18,16 @@ namespace CMaker {
 	class TextureResManager 
 	{
 	public:
-		sf::Texture& getTexture(CMaker::Texture _tex);
+		sf::Texture&					getTexture(CMaker::Texture _texture);
 
-		TextureResManager();
-		~TextureResManager();
+										TextureResManager();
+										~TextureResManager();
 
 	private:
-		void loadTexture(CMaker::Texture _font);
+		void							loadTexture(CMaker::Texture _texture);
 
-		std::map< CMaker::Texture, std::unique_ptr< sf::Texture > > resources;
-		static const std::map< CMaker::Texture, std::string > paths;
+		std::map< CMaker::Texture, std::unique_ptr< sf::Texture > >		resources;
+		static const std::map< CMaker::Texture, std::string >			paths;
 	};
 
 }

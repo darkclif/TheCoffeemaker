@@ -15,7 +15,7 @@ namespace CMaker {
 
 		void					Reset();
 
-								Transform(sf::Time _length);
+								Transform(sf::Time _length = sf::Time::Zero);
 		virtual					~Transform();
 
 	protected:

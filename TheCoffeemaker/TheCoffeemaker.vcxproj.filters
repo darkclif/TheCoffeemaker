@@ -126,6 +126,15 @@
     <ClCompile Include="transRotate.cpp">
       <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
+    <ClCompile Include="transGoto.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClCompile>
+    <ClCompile Include="transLabel.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClCompile>
+    <ClCompile Include="transWait.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -184,6 +193,15 @@
     </ClInclude>
     <ClInclude Include="transRotate.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="transGoto.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="transLabel.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="transWait.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

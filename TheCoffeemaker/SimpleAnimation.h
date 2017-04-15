@@ -16,6 +16,7 @@ namespace CMaker {
 
 	protected:
 		CMaker::AnimationEngine		animationEngine;
+
 	};
 
 }

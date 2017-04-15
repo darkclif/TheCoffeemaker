@@ -8,11 +8,14 @@
 
 namespace CMaker {
 	class SimpleAnimation;
+	class transGoto;
 
 	class AnimationEngine:
 		public Updatable
 	{
 	public:
+		friend class				transGoto;
+
 		/* Update engine and transform handled entity */
 		void						Update(sf::Time _time) override;
 
@@ -24,6 +27,8 @@ namespace CMaker {
 
 		/* Add transform to given animation */
 		void						addTransform(int _animation, CMaker::Transform* _transform);
+		void						addGoto(int _animation, int _label);
+		void						addLabel(int _animation, int _label);
 
 		/* Run / stop animation */
 		bool						isRunning();
@@ -36,6 +41,9 @@ namespace CMaker {
 	private:
 		/* Go to next transform or stop if transform was last on list */
 		void						nextTransform();
+
+		/* Go to transform with label */
+		void						goToTransform(int _label);
 
 		/* Entity to apply animation transforms */
 		CMaker::SimpleAnimation*	entity;

@@ -27,12 +27,12 @@ namespace CMaker {
 		}
 	}
 
-	void TextureResManager::loadTexture(CMaker::Texture _font)
+	void TextureResManager::loadTexture(CMaker::Texture _texture)
 	{
 		// Get path to this resource
 		std::string lPath;
 
-		auto it = paths.find(_font);
+		auto it = paths.find(_texture);
 		if (it != paths.end()) {
 			lPath = it->second;
 		}
@@ -47,7 +47,10 @@ namespace CMaker {
 			throw new std::exception(msg.c_str());
 		}
 
-		resources.insert(std::make_pair(_font, std::move(tmpTexture)));
+		// Process texture
+		tmpTexture->setSmooth(true);
+
+		resources.insert(std::make_pair(_texture, std::move(tmpTexture)));
 	}
 
 	/*
