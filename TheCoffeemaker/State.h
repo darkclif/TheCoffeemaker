@@ -2,8 +2,8 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-//#include <TheCoffeeMaker/Updatable.h>
-//#include <TheCoffeeMaker/Drawable.h>
+#include <TheCoffeeMaker/Updatable.h>
+#include <TheCoffeeMaker/Drawable.h>
 
 #include <memory>
 #include <set>
@@ -16,29 +16,54 @@ namespace CMaker {
 	public:
 		typedef std::unique_ptr<State> Ptr;
 
-		void virtual HandleInput(const sf::Event& _event) = 0;
-		void virtual Update(const sf::Time _time) = 0;
-		void virtual Render() = 0;
+		void virtual					HandleInput(const sf::Event& _event) = 0;
+		void virtual					Update(const sf::Time _time);
+		void virtual					Render();
 
-		bool isTimeTrans();
-		bool isRendTrans();
+		/*	Enque and deque drawable entity to draw in each frame
+			
+			Entity deques when it is not visible.
+		*/
+		void							enqueDrawable(Drawable* _entity);
+		void							dequeDrawable(sf::Uint32 _globalId);
 
-		State(Game* _game);
-		State(Game* _game, bool _timeTrans, bool _rendTrans);
-		virtual ~State();
+		/*	Enque and deque updatable entity to update in each frame
+
+			Entity deques when it is stopped.
+		*/
+		void							enqueUpdatable(Updatable* _entity);
+		void							dequeUpdatable(sf::Uint32 _globalId);
+
+		bool							isTimeTrans();
+		bool							isRendTrans();
+
+										State(Game* _game);
+										State(Game* _game, bool _timeTrans, bool _rendTrans);
+		virtual							~State();
 
 	protected:
-		Game* getGame();
+		Game*							getGame();
 
 	private:
-		Game* game;
+		/* Game object */
+		Game*							game;
 
-		/* Units queues */
-		//std::set<CMaker::Drawable*>	queueDrawable;
-		//std::set<CMaker::Updatable*> queueUpdatable;
+		/* How to order drawable entities by layers */
+		struct drawableComp {
+			bool operator() (const Drawable* d1, const Drawable* d2) const {
+				return d1->getLayer() < d2->getLayer();
+			}
+		};
 
-		bool timeTrans; /* Pass time to states below */
-		bool rendTrans; /* Render states below */
+		/* Entities queues to make drawing and update easy */
+		std::vector<CMaker::Updatable*>						queueUpdatable;
+		std::multiset<CMaker::Drawable*, drawableComp>		queueDrawable;
+
+		/* Pass time to states below */
+		bool							timeTrans; 
+
+		/* Render states below */
+		bool							rendTrans; 
 	};
 
 }

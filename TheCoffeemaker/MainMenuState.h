@@ -3,6 +3,7 @@
 
 #include <TheCoffeeMaker/State.h>
 #include <TheCoffeeMaker/Menu.h>
+#include <TheCoffeeMaker/SimpleAnimation.h>
 
 namespace CMaker {
 
@@ -25,6 +26,9 @@ namespace CMaker {
 		std::unique_ptr< CMaker::Menu >	menuMain;
 
 		/* Events */
+		std::unique_ptr< CMaker::SimpleAnimation >	animLogo;
+		std::unique_ptr< CMaker::SimpleAnimation >	animBubus;
+
 	};
 
 }

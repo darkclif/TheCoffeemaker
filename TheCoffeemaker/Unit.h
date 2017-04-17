@@ -12,6 +12,7 @@ namespace CMaker {
 		BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT
 	};
 
+	/* Unit class */
 	class Unit: 
 		public sf::Sprite,
 		public CMaker::Drawable

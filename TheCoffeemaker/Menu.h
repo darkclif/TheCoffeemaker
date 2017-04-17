@@ -30,11 +30,16 @@ namespace CMaker {
 		/* Add empty page menu */
 		void						addPage(int _page);
 
-		/* Add entry to given manu page */
+		/* Add entry to the end of given menu page */
 		void						addEntry(int _page, std::string _name);
 
 		/* Set starting page and entry on this page */
 		void						setStartingPage(int _page, unsigned int _entry);
+
+		/* Add event function to the last entry of given menu page */
+		void						addEventFunction(int _page, sf::Keyboard::Key _key, std::function<void()> _func);
+		void						addEventFunctionPop(int _page, sf::Keyboard::Key _key); // Pop current page if not last
+		void						addEventFunctionPush(int _page, sf::Keyboard::Key _key, int _targetPage); // Push next page
 
 		/* Set font used to draw menu text */
 		void						setFont(CMaker::Font _font);
@@ -51,7 +56,7 @@ namespace CMaker {
 			unsigned int entry;
 		};
 
-		/* Single menu entry on page*/
+		/* Single menu entry on page with functions */
 		struct Entry {
 			Entry(std::string _name) : name{ _name } {};
 
@@ -71,12 +76,23 @@ namespace CMaker {
 		CMaker::Font				font;
 
 	private:
+		/* Trigger current entry functions */
+		void						triggerCurrentEntry(sf::Keyboard::Key _key);
+
 		/* Get current page info */
 		PageInfo					getCurrentPageInfo();
+
+		/* Get last entry of given page if exist */
+		Entry&						getPageLastEntry(int _page);
 
 		/* Change entry on current page */
 		void						changeEntry(int _change);
 
+		/* Pop current page */
+		void						popPage();
+
+		/* Push page */
+		void						pushPage(int _page);
 	};
 
 }

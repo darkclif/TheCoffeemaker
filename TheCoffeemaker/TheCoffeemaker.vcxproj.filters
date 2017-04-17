@@ -162,6 +162,9 @@
     <ClCompile Include="MainMenuState.cpp">
       <Filter>Source Files\StatesMachine\States</Filter>
     </ClCompile>
+    <ClCompile Include="transMoveBy.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="MainMenuState.h">
       <Filter>Header Files\StatesMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="transMoveBy.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

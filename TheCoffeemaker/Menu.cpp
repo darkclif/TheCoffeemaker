@@ -7,14 +7,24 @@ namespace CMaker {
 	*/
 	bool Menu::HandleInput(const sf::Event & _event)
 	{
+		// There is no pages in menu
+		if (stackPages.empty()) {
+			return true;
+		}
+
 		switch (_event.type) {
 			/* On key pressed */
 			case sf::Event::EventType::KeyPressed: 
+				// Default behavior
 				switch (_event.key.code){
 					case sf::Keyboard::Up: changeEntry(-1); break;
 					case sf::Keyboard::Down: changeEntry(1); break;
 					default: break;
 				}
+
+				// Check current entry functions
+				triggerCurrentEntry(_event.key.code);
+
 				break;
 			default: break;
 		}
@@ -91,9 +101,57 @@ namespace CMaker {
 		stackPages.push(PageInfo(_page, _entry));
 	}
 
+	/* Entry functions */
+	void Menu::addEventFunction(int _page, sf::Keyboard::Key _key, std::function<void()> _func)
+	{
+		// Add function
+		auto& lEntry = getPageLastEntry(_page);
+		lEntry.actions.push_back(std::make_pair(_key, _func));
+	}
+
+	void Menu::addEventFunctionPush(int _page, sf::Keyboard::Key _key, int _targerPage)
+	{
+		// Add function
+		auto& lEntry = getPageLastEntry(_page); 
+		lEntry.actions.push_back(std::make_pair(_key, std::bind(&Menu::pushPage, this, _targerPage)));
+	}
+
+	void Menu::addEventFunctionPop(int _page, sf::Keyboard::Key _key)
+	{
+		// Add function
+		auto& lEntry = getPageLastEntry(_page);
+		lEntry.actions.push_back(std::make_pair(_key, std::bind(&Menu::popPage, this)));
+	}
+
+	void Menu::pushPage(int _targetPage)
+	{
+		stackPages.push(PageInfo(_targetPage, 0));
+	}
+
+	void Menu::popPage()
+	{
+		if (stackPages.size() != 1)
+			stackPages.pop();
+	}
+
 	void Menu::setFont(CMaker::Font _font)
 	{
 		font = _font;
+	}
+
+	void Menu::triggerCurrentEntry(sf::Keyboard::Key _key)
+	{
+		// Get current entry
+		PageInfo lCurrPageInfo = getCurrentPageInfo();
+		auto& lCurrPage = mapMenuPages.at(lCurrPageInfo.page);
+		auto& lCurrEntry = lCurrPage.at(lCurrPageInfo.entry);
+
+		// Check if event is triggered
+		for (auto& lEventFunc : lCurrEntry.actions) {
+			if (lEventFunc.first == _key) {
+				lEventFunc.second();
+			}
+		}
 	}
 
 	Menu::PageInfo Menu::getCurrentPageInfo()
@@ -102,6 +160,22 @@ namespace CMaker {
 			throw std::exception("You are trying to get current page when no page is on stack.");
 
 		return stackPages.top();
+	}
+
+	Menu::Entry& Menu::getPageLastEntry(int _page)
+	{
+		// Check if _page and at last one _entry exist
+		auto tmpPage = mapMenuPages.find(_page);
+		if (tmpPage == mapMenuPages.end()) {
+			throw std::exception("No existing page passed as starting to Menu class.");
+		}
+
+		if (tmpPage->second.empty()) {
+			throw std::exception("There is no at last one entry in given menu page, cannot add a function.");
+		}
+
+		// Return last entry
+		return tmpPage->second.back();
 	}
 
 	void Menu::changeEntry(int _change)

@@ -9,6 +9,7 @@ namespace CMaker {
 		{ Texture::SMALL_LOGO, "textures/small_logo.png" },
 		{ Texture::FOCZKA_ENGINE_LOGO, "textures/foczka_engine.png" },
 		{ Texture::TECH_LOGOS, "textures/tech_logos.png" },
+		{ Texture::BUBUS_FACE, "textures/bubus_face.png" },
 		
 		{ Texture::NONE, "textures/none.png" }
 	};

@@ -127,6 +127,7 @@
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="SimpleAnimation.cpp" />
+    <ClCompile Include="transMoveBy.cpp" />
     <ClCompile Include="transScale.cpp" />
     <ClCompile Include="UpdatableUnit.cpp" />
     <ClCompile Include="Cinamon.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="SimpleAnimation.h" />
+    <ClInclude Include="transMoveBy.h" />
     <ClInclude Include="transScale.h" />
     <ClInclude Include="UpdatableUnit.h" />
     <ClInclude Include="Cinamon.h" />

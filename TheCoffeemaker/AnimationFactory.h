@@ -20,6 +20,12 @@ namespace CMaker {
 
 			/* Scale from 0.f to 1.f and shake */
 			SCALE_SHOW,
+
+			/* Wobble right and left */
+			WOBBLE,
+
+			/* Levitate up and a little down */
+			LEVITATE
 		};
 
 	public:
@@ -44,12 +50,31 @@ namespace CMaker {
 			_engine->addAnimation(_num);
 
 			_engine->addTransform(_num, new transScale(sf::Vector2f(1.f, 1.f), sf::milliseconds(500)));
-			_engine->addLabel(_num, 1);
-			_engine->addTransform(_num, new transRotate(-1.f, sf::milliseconds(100)));
-			_engine->addTransform(_num, new transRotate(2.f, sf::milliseconds(200)));
-			_engine->addTransform(_num, new transRotate(-1.f, sf::milliseconds(100)));
-			_engine->addGoto(_num, 1);
+		}
 
+		template<>
+		static void addAnimation<PredefAnimation::WOBBLE>(int  _num, CMaker::AnimationEngine* _engine) {
+			_engine->addAnimation(_num);
+
+			_engine->addTransform(_num, new transRotate(-5.f, sf::milliseconds(5000)));
+			_engine->addLabel(_num, 1);
+			_engine->addTransform(_num, new transRotate(10.f, sf::milliseconds(7000)));
+			_engine->addTransform(_num, new transWait(sf::milliseconds(500)));
+			_engine->addTransform(_num, new transRotate(-10.f, sf::milliseconds(7000)));
+			_engine->addTransform(_num, new transWait(sf::milliseconds(500)));
+			_engine->addGoto(_num, 1);
+		}
+
+		template<>
+		static void addAnimation<PredefAnimation::LEVITATE>(int  _num, CMaker::AnimationEngine* _engine) {
+			_engine->addAnimation(_num);
+
+			_engine->addLabel(_num, 1);
+			_engine->addTransform(_num, new transMoveBy(sf::Vector2f(0.f, -10.f), sf::milliseconds(7000)));
+			_engine->addTransform(_num, new transWait(sf::milliseconds(1000)));
+			_engine->addTransform(_num, new transMoveBy(sf::Vector2f(0.f, 10.f), sf::milliseconds(7000)));
+			_engine->addTransform(_num, new transWait(sf::milliseconds(1000)));
+			_engine->addGoto(_num, 1);
 		}
 
 	private:
