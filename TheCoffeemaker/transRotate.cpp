@@ -20,6 +20,8 @@ namespace CMaker {
 		}
 
 		// Interpolate position
+
+		// TODO: Make this equation numerical correct !
 		float currRotation = startRotation + ( targetRotation * (getTime() / getLength()) );
 		_entity->setRotation(currRotation);
 

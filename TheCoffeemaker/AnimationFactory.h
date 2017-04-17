@@ -16,7 +16,10 @@ namespace CMaker {
 	public:
 		enum class PredefAnimation {
 			/* Fade to alpha 255 and then to 0 */
-			SHOW_FADE
+			SHOW_FADE,
+
+			/* Scale from 0.f to 1.f and shake */
+			SCALE_SHOW,
 		};
 
 	public:
@@ -34,6 +37,19 @@ namespace CMaker {
 			_engine->addTransform(_num, new transFade(sf::Uint8(255), sf::milliseconds(2000)));
 			_engine->addTransform(_num, new transWait(sf::milliseconds(1000)));
 			_engine->addTransform(_num, new transFade(sf::Uint8(0), sf::milliseconds(2000)));
+		}
+		
+		template<>
+		static void addAnimation<PredefAnimation::SCALE_SHOW>(int  _num, CMaker::AnimationEngine* _engine) {
+			_engine->addAnimation(_num);
+
+			_engine->addTransform(_num, new transScale(sf::Vector2f(1.f, 1.f), sf::milliseconds(500)));
+			_engine->addLabel(_num, 1);
+			_engine->addTransform(_num, new transRotate(-1.f, sf::milliseconds(100)));
+			_engine->addTransform(_num, new transRotate(2.f, sf::milliseconds(200)));
+			_engine->addTransform(_num, new transRotate(-1.f, sf::milliseconds(100)));
+			_engine->addGoto(_num, 1);
+
 		}
 
 	private:

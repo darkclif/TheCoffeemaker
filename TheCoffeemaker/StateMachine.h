@@ -10,7 +10,7 @@ namespace CMaker {
 
 	enum class EnumState {
 		INTRO,
-		MENU,
+		MAIN_MENU,
 		GAME
 	};
 

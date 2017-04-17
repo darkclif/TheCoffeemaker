@@ -10,6 +10,8 @@ namespace CMaker {
 	public:
 		void						Update(sf::Time _time) override;
 
+		bool						isRunning();
+
 									Animation(CMaker::Texture _enumTexture, sf::Vector2f _pos);
 									Animation();
 		virtual						~Animation();

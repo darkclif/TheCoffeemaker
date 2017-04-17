@@ -5,3 +5,4 @@
 #include <TheCoffeeMaker/transGoto.h>
 #include <TheCoffeeMaker/transRotate.h>
 #include <TheCoffeeMaker/transWait.h>
+#include <TheCoffeeMaker/transScale.h>

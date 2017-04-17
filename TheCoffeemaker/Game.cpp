@@ -15,12 +15,13 @@ namespace CMaker {
 		const sf::VideoMode VIDEO_MODE(800,600);
 		const int FRAME_LIMIT = 30;
 		const int ANTIALIASING = 8;
+		const std::string WINDOW_NAME = "Bubus - The Coffeemaker";
 
 		// Setup render
 		sf::ContextSettings setWindow;
 		setWindow.antialiasingLevel = ANTIALIASING;
 
-		sf::RenderWindow* renWindow = new sf::RenderWindow(VIDEO_MODE, "SFML works!", sf::Style::Default, setWindow);
+		sf::RenderWindow* renWindow = new sf::RenderWindow(VIDEO_MODE, WINDOW_NAME, sf::Style::Default, setWindow);
 		renWindow->setFramerateLimit(FRAME_LIMIT);
 		renWindow->resetGLStates();
 

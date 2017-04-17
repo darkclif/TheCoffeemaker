@@ -2,7 +2,11 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+//#include <TheCoffeeMaker/Updatable.h>
+//#include <TheCoffeeMaker/Drawable.h>
+
 #include <memory>
+#include <set>
 
 namespace CMaker {
 	class Game;
@@ -28,6 +32,10 @@ namespace CMaker {
 
 	private:
 		Game* game;
+
+		/* Units queues */
+		//std::set<CMaker::Drawable*>	queueDrawable;
+		//std::set<CMaker::Updatable*> queueUpdatable;
 
 		bool timeTrans; /* Pass time to states below */
 		bool rendTrans; /* Render states below */

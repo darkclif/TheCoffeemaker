@@ -8,42 +8,48 @@
 
 namespace CMaker {
 	/*
-		STATE MANAGMENT	
+		State managment	
 	*/
 	void IntroState::HandleInput(const sf::Event & _event)
 	{
 		switch (_event.type) {
-			/* On any key pressed */
-			case sf::Event::EventType::KeyPressed: this->endIntro(_event); break;
+			/* On key pressed */
+			case sf::Event::EventType::KeyPressed: this->endIntro(); break;
 			default: break;
 		}
 	}
 
 	void IntroState::Update(const sf::Time _time)
 	{
+		// Update entities
 		logoFoczkaEngine->Update(_time);
 		logoTech->Update(_time);
+
+		// End intro if all animations ended
+		if (!logoFoczkaEngine->isRunning() && !logoTech->isRunning()) {
+			this->endIntro();
+		}
 	}
 
 	void IntroState::Render()
 	{
+		// Draw entities
 		sf::RenderWindow& render = getGame()->getRender();
 
 		logoFoczkaEngine->Draw(render);
 		logoTech->Draw(render);
 	}
 
-	/*
-		Constructor / Destructor
-	*/
-	IntroState::IntroState(Game* _game) : State(_game)
+	void IntroState::initEntities()
 	{
+		// Focza Engine logo
 		logoFoczkaEngine = std::make_unique<CMaker::SimpleAnimation>(CMaker::Texture::FOCZKA_ENGINE_LOGO);
 		logoFoczkaEngine->setColorAlpha(0);
 		logoFoczkaEngine->setPosition(getGame()->getRender().getView().getCenter() - sf::Vector2f(0.f, 80.f));
 		logoFoczkaEngine->setOriginAlign(CMaker::OriginAlign::MIDDLE_CENTER);
 		logoFoczkaEngine->loadAnimation<CMaker::AnimationFactory::PredefAnimation::SHOW_FADE>();
 
+		// Logo of technologies
 		logoTech = std::make_unique<CMaker::SimpleAnimation>(CMaker::Texture::TECH_LOGOS);
 		logoTech->setColorAlpha(0);
 		logoTech->setPosition(getGame()->getRender().getView().getCenter() + sf::Vector2f(0.f, 120.f));
@@ -51,22 +57,31 @@ namespace CMaker {
 		logoTech->loadAnimation<CMaker::AnimationFactory::PredefAnimation::SHOW_FADE>();
 	}
 
+	/*
+		Events
+	*/
+	void IntroState::endIntro() {
+		this->getGame()->getStateMachine().reqPopState();
+		this->getGame()->getStateMachine().reqPushState(EnumState::MAIN_MENU);
+	}
+
+	/*
+		Constructor / Destructor
+	*/
+	IntroState::IntroState(Game* _game): 
+		State(_game)
+	{
+		initEntities();
+	}
+
 	IntroState::IntroState(Game* _game, bool _timeTrans, bool _rendTrans): 
 		State(_game, _timeTrans, _rendTrans)
 	{
-
+		initEntities();
 	}
 
 	IntroState::~IntroState()
 	{
 
-	}
-
-	/*
-		Events
-	*/
-	void IntroState::endIntro(const sf::Event&) {
-		this->getGame()->getStateMachine().reqPopState();
-		this->getGame()->getStateMachine().reqPushState(EnumState::INTRO);
 	}
 }

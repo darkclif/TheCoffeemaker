@@ -8,6 +8,11 @@ namespace CMaker {
 		animationEngine.Update(_time);
 	}
 
+	bool Animation::isRunning()
+	{
+		return animationEngine.isRunning();
+	}
+
 	Animation::Animation(CMaker::Texture _enumTexture, sf::Vector2f _pos):
 		UpdatableUnit(_enumTexture,_pos),
 		animationEngine(this)

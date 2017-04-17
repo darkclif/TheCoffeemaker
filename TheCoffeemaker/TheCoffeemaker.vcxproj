@@ -123,7 +123,11 @@
   <ItemGroup>
     <ClCompile Include="AnimationFactory.cpp" />
     <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="Eventable.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="SimpleAnimation.cpp" />
+    <ClCompile Include="transScale.cpp" />
     <ClCompile Include="UpdatableUnit.cpp" />
     <ClCompile Include="Cinamon.cpp" />
     <ClCompile Include="transFade.cpp" />
@@ -150,7 +154,11 @@
   <ItemGroup>
     <ClInclude Include="AnimationFactory.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="Eventable.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="SimpleAnimation.h" />
+    <ClInclude Include="transScale.h" />
     <ClInclude Include="UpdatableUnit.h" />
     <ClInclude Include="Cinamon.h" />
     <ClInclude Include="transFade.h" />

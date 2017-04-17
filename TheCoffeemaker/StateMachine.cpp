@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 
 #include <TheCoffeeMaker/IntroState.h>
+#include <TheCoffeeMaker/MainMenuState.h>
+
 #include <TheCoffeeMaker/Game.h>
 
 namespace CMaker {
@@ -168,6 +170,7 @@ namespace CMaker {
 	void StateMachine::RegisterStates()
 	{
 		registerState<CMaker::IntroState>(EnumState::INTRO);
+		registerState<CMaker::MainMenuState>(EnumState::MAIN_MENU);
 	}
 
 	bool StateMachine::HandleGlobalInput(sf::Event& _event)

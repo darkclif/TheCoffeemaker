@@ -13,18 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\StateMachine">
-      <UniqueIdentifier>{9afe3264-e4a0-4306-b004-be136cbe05d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\States">
-      <UniqueIdentifier>{22704c7f-4a0e-4f05-a645-3aad0383c5ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\StateMachine">
-      <UniqueIdentifier>{005130b8-db13-49cb-8669-aa281a4f322e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\States">
-      <UniqueIdentifier>{0b04a51c-0ba5-4c7e-8dba-36adbe6548de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Tools">
       <UniqueIdentifier>{640a8423-47ca-4741-9742-d819fdd79657}</UniqueIdentifier>
     </Filter>
@@ -67,6 +55,24 @@
     <Filter Include="Source Files\Entity\EntityBase\AnimEngine\Transforms">
       <UniqueIdentifier>{28251ab0-332b-42bf-8fca-575198f56575}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{4c14a9c2-5747-40bc-a4ea-f9d4b430a5f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{5d93290f-3719-4431-8430-c766c1577583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\StatesMachine">
+      <UniqueIdentifier>{22704c7f-4a0e-4f05-a645-3aad0383c5ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StatesMachine">
+      <UniqueIdentifier>{0b04a51c-0ba5-4c7e-8dba-36adbe6548de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StatesMachine\States">
+      <UniqueIdentifier>{3d5a076c-630b-41bf-a237-ce28836baa54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\StatesMachine\States">
+      <UniqueIdentifier>{8fee90b8-1762-478d-b291-0c5679658f37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,13 +82,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Source Files\StateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="IntroState.cpp">
-      <Filter>Source Files\States</Filter>
+      <Filter>Source Files\StatesMachine</Filter>
     </ClCompile>
     <ClCompile Include="Console.cpp">
       <Filter>Source Files\Tools</Filter>
@@ -139,10 +139,28 @@
       <Filter>Source Files\Entity\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="AnimationFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
     </ClCompile>
     <ClCompile Include="SimpleAnimation.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Source Files\Entity\EntityBase</Filter>
+    </ClCompile>
+    <ClCompile Include="transScale.cpp">
+      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClCompile>
+    <ClCompile Include="Eventable.cpp">
+      <Filter>Source Files\Entity\EntityBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Source Files\StatesMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroState.cpp">
+      <Filter>Source Files\StatesMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>Source Files\StatesMachine\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,13 +168,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Header Files\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="IntroState.h">
-      <Filter>Header Files\States</Filter>
+      <Filter>Header Files\StatesMachine</Filter>
     </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Header Files\Tools</Filter>
@@ -215,11 +227,29 @@
     <ClInclude Include="Drawable.h">
       <Filter>Header Files\Entity\EntityBase</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleAnimation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationFactory.h">
       <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="transScale.h">
+      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleAnimation.h">
+      <Filter>Header Files\Entity\EntityBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Eventable.h">
+      <Filter>Header Files\Entity\EntityBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Header Files\StatesMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroState.h">
+      <Filter>Header Files\StatesMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>Header Files\StatesMachine\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
