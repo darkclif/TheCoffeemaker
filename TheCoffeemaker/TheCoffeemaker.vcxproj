@@ -127,6 +127,7 @@
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="SimpleAnimation.cpp" />
+    <ClCompile Include="Tools.cpp" />
     <ClCompile Include="transMoveBy.cpp" />
     <ClCompile Include="transScale.cpp" />
     <ClCompile Include="UpdatableUnit.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="SimpleAnimation.h" />
+    <ClInclude Include="Tools.h" />
     <ClInclude Include="transMoveBy.h" />
     <ClInclude Include="transScale.h" />
     <ClInclude Include="UpdatableUnit.h" />

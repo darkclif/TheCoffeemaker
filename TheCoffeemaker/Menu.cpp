@@ -1,6 +1,8 @@
 #include "Menu.h"
 #include "Console.h"
 
+#include <TheCoffeeMaker/Tools.h>
+
 namespace CMaker {
 	/*
 		Update
@@ -15,21 +17,31 @@ namespace CMaker {
 		switch (_event.type) {
 			/* On key pressed */
 			case sf::Event::EventType::KeyPressed: 
-				// Default behavior
 				switch (_event.key.code){
+					// Default behavior
 					case sf::Keyboard::Up: changeEntry(-1); break;
 					case sf::Keyboard::Down: changeEntry(1); break;
+
+					/* My defined actions */
+					case sf::Keyboard::Return: triggerCurrentEntry(Entry::Action::SELECTED); break;
 					default: break;
 				}
-
-				// Check current entry functions
-				triggerCurrentEntry(_event.key.code);
-
+				break;
+			/* On cursor moved */
+			case sf::Event::EventType::MouseMoved:
+				checkEntryHighlight(_event);
+				break;
+			/* On cursor clicked */
+			case sf::Event::EventType::MouseButtonPressed:
+				switch (_event.mouseButton.button) {
+					case sf::Mouse::Button::Left: checkMouseClick(_event); break;
+					default: break;
+				}
 				break;
 			default: break;
 		}
 
-		return true;
+		return false;
 	}
 
 	/*
@@ -37,28 +49,78 @@ namespace CMaker {
 	*/
 	void Menu::Draw(sf::RenderWindow & _render)
 	{
-		sf::Color normColor(255,255,255); // Color of not selected entry
+		sf::Color normColor(255, 255, 255); // Color of not selected entry
 		sf::Color currColor(225, 23, 23); // Color of selected entry
-		sf::Vector2f deltaMove(0.f, 50.f); // Space between entries
 
-		sf::Text lText;
-		lText.setFont(ResourceMgr.getResource(font));
-		lText.setPosition(100.f, 100.f);
+		if (!menuBuilded) {
+			buildMenu();
+		}
 
 		PageInfo lCurrPage = getCurrentPageInfo();
 		std::vector<Entry>& lEntries = mapMenuPages.at(lCurrPage.page);
 
+		// DEBUG
+		sf::RectangleShape menuRect;
+		menuRect.setPosition(sf::Vector2f(menuArea.left, menuArea.top));
+		menuRect.setSize(sf::Vector2f(menuArea.width, menuArea.height));
+		menuRect.setFillColor(sf::Color::Cyan);
+		_render.draw(menuRect);
+
 		for (unsigned int i = 0; i < lEntries.size(); ++i) {
 			Entry& lEntry = lEntries[i];
 
-			lText.setString( lEntry.name );
-			lText.move(deltaMove);
-			lText.setFillColor(i==lCurrPage.entry ? currColor : normColor);
+			// DEBUG
+			sf::FloatRect rect = lEntry.text.getGlobalBounds();
+			sf::RectangleShape textRect;
+			textRect.setPosition(sf::Vector2f(rect.left, rect.top));
+			textRect.setSize(sf::Vector2f(rect.width, rect.height));
+			textRect.setFillColor(sf::Color::Blue);
+			_render.draw(textRect);
 
-			_render.draw(lText);
+			lEntry.text.setFillColor(i == lCurrPage.entry ? currColor : normColor);
+			_render.draw(lEntry.text);
 		}
 	}
 	
+	void Menu::buildMenu()
+	{
+		sf::Color normColor(255, 255, 255); // Color of not selected entry
+		sf::Color currColor(225, 23, 23); // Color of selected entry
+
+		sf::Vector2f startPosition(100.f, 100.f);
+		sf::Vector2f deltaMove(0.f, 50.f); // Space between entries
+		bool firstTextBox = true;
+
+		sf::Text lText;
+		lText.setFont(ResourceMgr.getResource(font));
+
+		for (auto& lPage : mapMenuPages) {
+			auto& lEntries = lPage.second;
+			lText.setPosition(100.f, 100.f);
+
+			for (unsigned int i = 0; i < lEntries.size(); ++i) {
+				Entry& lEntry = lEntries[i];
+
+				lText.setString(lEntry.name);
+				lText.move(deltaMove);
+
+				// Expand menu area
+				sf::FloatRect lTextArea = lText.getGlobalBounds();
+				if (firstTextBox) {
+					menuArea = lTextArea;
+					firstTextBox = false;
+				}
+				else {
+					Tools::expandRect(menuArea, lTextArea);
+				}
+
+				lEntry.text = lText;
+			}
+		}
+
+		menuBuilded = true;
+	}
+
 	void Menu::addPage(int _page)
 	{
 		if (mapMenuPages.find(_page) != mapMenuPages.end()) {
@@ -102,25 +164,25 @@ namespace CMaker {
 	}
 
 	/* Entry functions */
-	void Menu::addEventFunction(int _page, sf::Keyboard::Key _key, std::function<void()> _func)
+	void Menu::addEventFunction(int _page, Entry::Action _action, std::function<void()> _func)
 	{
 		// Add function
 		auto& lEntry = getPageLastEntry(_page);
-		lEntry.actions.push_back(std::make_pair(_key, _func));
+		lEntry.actFunctions.insert(std::make_pair(_action, _func));
 	}
 
-	void Menu::addEventFunctionPush(int _page, sf::Keyboard::Key _key, int _targerPage)
+	void Menu::addEventFunctionPush(int _page, Entry::Action _action, int _targerPage)
 	{
 		// Add function
 		auto& lEntry = getPageLastEntry(_page); 
-		lEntry.actions.push_back(std::make_pair(_key, std::bind(&Menu::pushPage, this, _targerPage)));
+		lEntry.actFunctions.insert(std::make_pair(_action, std::bind(&Menu::pushPage, this, _targerPage)));
 	}
 
-	void Menu::addEventFunctionPop(int _page, sf::Keyboard::Key _key)
+	void Menu::addEventFunctionPop(int _page, Entry::Action _action)
 	{
 		// Add function
 		auto& lEntry = getPageLastEntry(_page);
-		lEntry.actions.push_back(std::make_pair(_key, std::bind(&Menu::popPage, this)));
+		lEntry.actFunctions.insert(std::make_pair(_action, std::bind(&Menu::popPage, this)));
 	}
 
 	void Menu::pushPage(int _targetPage)
@@ -139,22 +201,65 @@ namespace CMaker {
 		font = _font;
 	}
 
-	void Menu::triggerCurrentEntry(sf::Keyboard::Key _key)
+	void Menu::triggerCurrentEntry(Entry::Action _action)
 	{
-		// Get current entry
-		PageInfo lCurrPageInfo = getCurrentPageInfo();
-		auto& lCurrPage = mapMenuPages.at(lCurrPageInfo.page);
-		auto& lCurrEntry = lCurrPage.at(lCurrPageInfo.entry);
+		getCurrentEntry().Trigger(_action);
+	}
 
-		// Check if event is triggered
-		for (auto& lEventFunc : lCurrEntry.actions) {
-			if (lEventFunc.first == _key) {
-				lEventFunc.second();
+	void Menu::checkEntryHighlight(sf::Event _event)
+	{
+		auto& lRender = game->getRender();
+		sf::Vector2f lMousePoint = lRender.mapPixelToCoords(sf::Vector2i(_event.mouseMove.x, _event.mouseMove.y));
+
+		// Not in menu area
+		if (!menuArea.contains(lMousePoint))
+			return;
+
+		// Check all entries of current page
+		PageInfo& currPage = getCurrentPageInfo();
+		auto& currEntries = mapMenuPages.at(currPage.page);
+
+		for (sf::Uint32 i = 0; i < currEntries.size(); ++i) {
+			auto& lEntry = currEntries[i];
+			if (lEntry.text.getGlobalBounds().contains(lMousePoint)) {
+				currPage.entry = i;
+				lEntry.Trigger(Entry::Action::HIGHLIGHTED);
+				return;
 			}
 		}
 	}
 
-	Menu::PageInfo Menu::getCurrentPageInfo()
+	void Menu::checkMouseClick(sf::Event _event)
+	{
+		auto& lRender = game->getRender();
+		sf::Vector2f lMousePoint = lRender.mapPixelToCoords(sf::Vector2i(_event.mouseButton.x, _event.mouseButton.y));
+
+		// Check if current entry is clicked 
+		auto& currEntry = getCurrentEntry();
+
+		if (currEntry.text.getGlobalBounds().contains(lMousePoint)) {
+			if (currEntry.Trigger(Entry::Action::SELECTED)) {
+				// Menu page can be changed after selection 
+				// so call mouse move event to check new 
+				// highlighted entry.
+				sf::Event newEvent;
+				newEvent.type = sf::Event::EventType::MouseMoved;
+				newEvent.mouseMove.x = _event.mouseButton.x;
+				newEvent.mouseMove.y = _event.mouseButton.y;
+
+				checkEntryHighlight(newEvent);
+			};
+		}
+	}
+
+	Menu::Entry & Menu::getCurrentEntry()
+	{
+		PageInfo lCurrPageInfo = getCurrentPageInfo();
+		auto& lCurrPage = mapMenuPages.at(lCurrPageInfo.page);
+		return lCurrPage.at(lCurrPageInfo.entry);
+	}
+
+	Menu::PageInfo& Menu::getCurrentPageInfo()
 	{
 		if (stackPages.empty())
 			throw std::exception("You are trying to get current page when no page is on stack.");
@@ -192,8 +297,10 @@ namespace CMaker {
 	/*
 		Constructor / Destructor 
 	*/
-	Menu::Menu():
-		font{ CMaker::Font::DEFAULT }
+	Menu::Menu(Game* _game):
+		font{ CMaker::Font::DEFAULT },
+		menuBuilded{ false },
+		game{ _game }
 	{
 	}
 

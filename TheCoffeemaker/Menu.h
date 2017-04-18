@@ -2,6 +2,7 @@
 //#include <TheCoffeeMaker/Updatable.h>
 #include <TheCoffeeMaker/Drawable.h>
 #include <TheCoffeeMaker/Eventable.h>
+#include <TheCoffeeMaker/Game.h>
 
 #include <TheCoffeeMaker/ResourceManager.h>
 
@@ -15,15 +16,57 @@
 namespace CMaker {
 
 	class Menu:
-		//public Updatable,
 		public Drawable,
 		public Eventable
 	{
 	public:
+		/* What page and what entry is activated */
+		struct PageInfo {
+			PageInfo(int _page, unsigned int _entry) :
+				page{ _page }, entry{ _entry }
+			{
+			};
+
+			int page;
+			unsigned int entry;
+		};
+
+		/* Single menu entry on page with event functions */
+		struct Entry {
+			enum class Action {
+				SELECTED,
+				HIGHLIGHTED,
+				ARROW_LEFT,
+				ARROW_RIGHT
+			};
+
+			Entry(std::string _name) : name{ _name } {};
+
+			/* Trigger event if exist */
+			bool Trigger(Action _action) {
+				bool triggered = false;
+
+				for (auto& funcIt : actFunctions) {
+					if (funcIt.first == _action) {
+						funcIt.second();
+						triggered = true;
+					}
+				}
+
+				return triggered;
+			}
+
+			std::string name;
+			sf::Text	text;
+			std::map< Action, std::function<void()> > actFunctions;
+		};
+
+		/* Manage menu */
 		bool						HandleInput(const sf::Event& _event);
 		void						Draw(sf::RenderWindow& _render);
 
-									Menu();
+		/* Constructor / Destructor */
+									Menu(Game* _game);
 									~Menu();
 	
 	//TODO: protected:
@@ -37,34 +80,15 @@ namespace CMaker {
 		void						setStartingPage(int _page, unsigned int _entry);
 
 		/* Add event function to the last entry of given menu page */
-		void						addEventFunction(int _page, sf::Keyboard::Key _key, std::function<void()> _func);
-		void						addEventFunctionPop(int _page, sf::Keyboard::Key _key); // Pop current page if not last
-		void						addEventFunctionPush(int _page, sf::Keyboard::Key _key, int _targetPage); // Push next page
+		void						addEventFunction(int _page, Entry::Action _action, std::function<void()> _func);
+
+		void						addEventFunctionPop(int _page, Entry::Action _action); // Pop current page if not last
+		void						addEventFunctionPush(int _page, Entry::Action _action, int _targetPage); // Push next page
 
 		/* Set font used to draw menu text */
 		void						setFont(CMaker::Font _font);
 
 	private:
-		/* What page and what entry is activated */
-		struct PageInfo {
-			PageInfo(int _page, unsigned int _entry):
-				page{ _page }, entry{ _entry }
-			{
-			};
-
-			int page;
-			unsigned int entry;
-		};
-
-		/* Single menu entry on page with functions */
-		struct Entry {
-			Entry(std::string _name) : name{ _name } {};
-
-			std::string name;
-			std::vector< std::pair< sf::Keyboard::Key, std::function<void()> > > 
-						actions;
-		};
-
 		/* Stack with menu pages, top-most is current page info */
 		std::stack< PageInfo >		stackPages;
 		
@@ -75,12 +99,30 @@ namespace CMaker {
 		/* Font used to print menu */
 		CMaker::Font				font;
 
+		/* If all entries sf::Text are builded */
+		bool						menuBuilded;
+
+		/* Global bounds of menu */
+		sf::FloatRect				menuArea;
+
+		/* Game object pointer (for get world coords from mouse click events with sf::RenderWindow)*/
+		CMaker::Game*				game;
+
 	private:
 		/* Trigger current entry functions */
-		void						triggerCurrentEntry(sf::Keyboard::Key _key);
+		void						triggerCurrentEntry(Entry::Action _action);
+
+		/* Check if mouse selected any entry of current page */
+		void						checkEntryHighlight(sf::Event _event);
+
+		/* Check if mouse clicked current selected entry*/
+		void						checkMouseClick(sf::Event _event);
+
+		/* Get currently selected entry */
+		Entry&						getCurrentEntry();
 
 		/* Get current page info */
-		PageInfo					getCurrentPageInfo();
+		PageInfo&					getCurrentPageInfo();
 
 		/* Get last entry of given page if exist */
 		Entry&						getPageLastEntry(int _page);
@@ -93,6 +135,9 @@ namespace CMaker {
 
 		/* Push page */
 		void						pushPage(int _page);
+
+		/* Build and calculate all entries sf::Text */
+		void						buildMenu();
 	};
 
 }

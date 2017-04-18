@@ -20,28 +20,33 @@ namespace CMaker {
 		void virtual					Update(const sf::Time _time);
 		void virtual					Render();
 
-		/*	Enque and deque drawable entity to draw in each frame
+		/*	
+			Enque and deque drawable entity to draw in each frame
 			
 			Entity deques when it is not visible.
 		*/
 		void							enqueDrawable(Drawable* _entity);
 		void							dequeDrawable(sf::Uint32 _globalId);
 
-		/*	Enque and deque updatable entity to update in each frame
+		/*	
+			Enque and deque updatable entity to update in each frame
 
 			Entity deques when it is stopped.
 		*/
 		void							enqueUpdatable(Updatable* _entity);
 		void							dequeUpdatable(sf::Uint32 _globalId);
 
+		/* Transparency accesors */
 		bool							isTimeTrans();
 		bool							isRendTrans();
 
+		/* Constructor / Destructor */
 										State(Game* _game);
 										State(Game* _game, bool _timeTrans, bool _rendTrans);
 		virtual							~State();
 
 	protected:
+		/* Game object accesor */
 		Game*							getGame();
 
 	private:
@@ -55,7 +60,7 @@ namespace CMaker {
 			}
 		};
 
-		/* Entities queues to make drawing and update easy */
+		/* Entities queues to make drawing and update automaticaly */
 		std::vector<CMaker::Updatable*>						queueUpdatable;
 		std::multiset<CMaker::Drawable*, drawableComp>		queueDrawable;
 
