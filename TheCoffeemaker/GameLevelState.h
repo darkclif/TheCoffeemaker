@@ -1,0 +1,48 @@
+#pragma once
+#include <TheCoffeeMaker/State.h>
+
+#include <TheCoffeeMaker/Unit.h>
+#include <TheCoffeeMaker/SimpleAnimation.h>
+
+#include <TheCoffeeMaker/Coffee.h>
+#include <TheCoffeeMaker/CoffeeStack.h>
+
+#include <memory>
+
+namespace CMaker {
+
+	class GameLevelState:
+		public State
+	{
+	public:
+	public:
+		void					HandleInput(const sf::Event& _event) override;
+		void					Update(const sf::Time _time) override;
+		void					Render() override;
+
+		void					initEntities();
+
+								GameLevelState(Game* _game);
+								GameLevelState(Game* _game, bool _timeTrans, bool _rendTrans);
+								~GameLevelState();
+
+	private:
+		/* Units */
+		std::unique_ptr<CMaker::Unit>	entTable;
+		std::unique_ptr<CMaker::Unit>	entBackground;
+
+		std::vector<std::unique_ptr<CMaker::CoffeeStack>>	entCoffeeStacks;
+		std::vector<std::unique_ptr<CMaker::Coffee>>		entCoffeeList;
+
+		CMaker::Unit*					draggedObject;
+
+		/* Events */
+		void							onMouseLeftPressed(sf::Event _event);
+		void							onMouseLeftReleased(sf::Event _event);
+		void							onMouseMoved(sf::Event _event);
+
+		void							spawnCoffee(Coffee::CoffeeType _type, sf::Vector2f _pos);
+		bool							dragObject(sf::Vector2f _pos);
+	};
+
+}

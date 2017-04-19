@@ -14,18 +14,21 @@ namespace CMaker {
 
 		// Exit if finished
 		sf::Time timeAbove = (getTime() - getLength());
+		float interpolation;
 		if (timeAbove > sf::Time::Zero) {
+			interpolation = 1.f;
 			Reset();
-			return timeAbove;
+		}
+		else {
+			timeAbove = sf::Time::Zero;
+			interpolation = (getTime() / getLength());
 		}
 
 		// Interpolate position
-
-		// TODO: Make this equation numerical correct !
-		float currRotation = startRotation + ( targetRotation * (getTime() / getLength()) );
+		float currRotation = startRotation + ( targetRotation * interpolation );
 		_entity->setRotation(currRotation);
 
-		return sf::Time::Zero;
+		return timeAbove;
 	}
 
 	/*

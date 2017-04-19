@@ -24,6 +24,8 @@ namespace CMaker {
 
 					/* My defined actions */
 					case sf::Keyboard::Return: triggerCurrentEntry(Entry::Action::SELECTED); break;
+					case sf::Keyboard::Left: triggerCurrentEntry(Entry::Action::ARROW_LEFT); break;
+					case sf::Keyboard::Right: triggerCurrentEntry(Entry::Action::ARROW_RIGHT); break;
 					default: break;
 				}
 				break;
@@ -60,22 +62,22 @@ namespace CMaker {
 		std::vector<Entry>& lEntries = mapMenuPages.at(lCurrPage.page);
 
 		// DEBUG
-		sf::RectangleShape menuRect;
-		menuRect.setPosition(sf::Vector2f(menuArea.left, menuArea.top));
-		menuRect.setSize(sf::Vector2f(menuArea.width, menuArea.height));
-		menuRect.setFillColor(sf::Color::Cyan);
-		_render.draw(menuRect);
+		//sf::RectangleShape menuRect;
+		//menuRect.setPosition(sf::Vector2f(menuArea.left, menuArea.top));
+		//menuRect.setSize(sf::Vector2f(menuArea.width, menuArea.height));
+		//menuRect.setFillColor(sf::Color::Cyan);
+		//_render.draw(menuRect);
 
 		for (unsigned int i = 0; i < lEntries.size(); ++i) {
 			Entry& lEntry = lEntries[i];
 
 			// DEBUG
-			sf::FloatRect rect = lEntry.text.getGlobalBounds();
-			sf::RectangleShape textRect;
-			textRect.setPosition(sf::Vector2f(rect.left, rect.top));
-			textRect.setSize(sf::Vector2f(rect.width, rect.height));
-			textRect.setFillColor(sf::Color::Blue);
-			_render.draw(textRect);
+			//sf::FloatRect rect = lEntry.text.getGlobalBounds();
+			//sf::RectangleShape textRect;
+			//textRect.setPosition(sf::Vector2f(rect.left, rect.top));
+			//textRect.setSize(sf::Vector2f(rect.width, rect.height));
+			//textRect.setFillColor(sf::Color::Blue);
+			//_render.draw(textRect);
 
 			lEntry.text.setFillColor(i == lCurrPage.entry ? currColor : normColor);
 			_render.draw(lEntry.text);
@@ -199,6 +201,11 @@ namespace CMaker {
 	void Menu::setFont(CMaker::Font _font)
 	{
 		font = _font;
+	}
+
+	Game * Menu::getGame()
+	{
+		return game;
 	}
 
 	void Menu::triggerCurrentEntry(Entry::Action _action)

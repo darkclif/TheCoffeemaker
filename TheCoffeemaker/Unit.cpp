@@ -17,6 +17,7 @@ namespace CMaker {
 	Unit::Unit():
 		enumTexture{ CMaker::Texture::NONE }
 	{
+		originAlign = OriginAlign::TOP_LEFT;
 		setPosition(sf::Vector2f(0.f, 0.f));
 		loadTexture(); 
 	}
@@ -24,6 +25,7 @@ namespace CMaker {
 	Unit::Unit(CMaker::Texture _enumTexture, sf::Vector2f _pos):
 		enumTexture{ _enumTexture }
 	{
+		originAlign = OriginAlign::TOP_LEFT;
 		setPosition(_pos);
 		loadTexture();
 	}
@@ -37,10 +39,22 @@ namespace CMaker {
 		return visible;
 	}
 
+	void Unit::setToDelete(bool _delete)
+	{
+		toDelete = _delete;
+	}
+
+	bool Unit::isToDelete()
+	{
+		return toDelete;
+	}
+
 	void Unit::setOriginAlign(OriginAlign _align)
 	{
 		sf::FloatRect lRect = getLocalBounds();
 		sf::Vector2f lOrig;
+
+		originAlign = _align;
 
 		switch (_align) {
 			case OriginAlign::TOP_LEFT: lOrig = sf::Vector2f(0.f, 0.f); break;
@@ -58,6 +72,17 @@ namespace CMaker {
 		}
 
 		setOrigin(lOrig);
+	}
+
+	OriginAlign Unit::getOriginAlign()
+	{
+		return originAlign;
+	}
+
+	void Unit::fitRenderView(sf::RenderWindow& _render)
+	{
+		sf::Vector2f lSize = _render.getView().getSize();
+		setScale(lSize.x / getLocalBounds().width, lSize.y / getLocalBounds().height);	
 	}
 
 	void Unit::Draw(sf::RenderWindow & _render)
@@ -82,7 +107,7 @@ namespace CMaker {
 	/* Load texture from ResourceManager */
 	void Unit::loadTexture()
 	{
-		setTexture(ResourceMgr.getResource(this->enumTexture));
+		setTexture(ResourceMgr.getResource(this->enumTexture), true);
 	}
 
 	/* Set visibility */

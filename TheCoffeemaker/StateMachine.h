@@ -11,7 +11,7 @@ namespace CMaker {
 	enum class EnumState {
 		INTRO,
 		MAIN_MENU,
-		GAME
+		GAME_LEVEL
 	};
 
 	class StateMachine

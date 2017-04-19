@@ -69,7 +69,7 @@ namespace CMaker {
 									Menu(Game* _game);
 									~Menu();
 	
-	//TODO: protected:
+	protected:
 		/* Add empty page menu */
 		void						addPage(int _page);
 
@@ -87,6 +87,9 @@ namespace CMaker {
 
 		/* Set font used to draw menu text */
 		void						setFont(CMaker::Font _font);
+
+		/* Get binded game instance */
+		Game*						getGame();
 
 	private:
 		/* Stack with menu pages, top-most is current page info */

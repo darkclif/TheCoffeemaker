@@ -166,7 +166,25 @@
       <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="Tools.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLevelState.cpp">
+      <Filter>Source Files\StatesMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Coffee.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeSmall.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeStack.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeBig.cpp">
+      <Filter>Source Files\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +279,25 @@
       <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="Tools.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLevelState.h">
+      <Filter>Header Files\StatesMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Coffee.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeSmall.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeBig.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeStack.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,6 +24,21 @@ namespace CMaker {
 			}
 		}
 
+		void moveView(sf::RenderWindow& _window, sf::Vector2f _vect) {
+			sf::View lView = _window.getView();
+			lView.setCenter(lView.getCenter() + _vect);
+			_window.setView(lView);
+		}
+
+		void drawRect(sf::FloatRect _rect, sf::RenderWindow & _render, sf::Color _color)
+		{
+			sf::RectangleShape lRect;
+			lRect.setPosition(sf::Vector2f(_rect.left, _rect.top));
+			lRect.setSize(sf::Vector2f(_rect.width, _rect.height));
+			lRect.setFillColor(_color);
+			_render.draw(lRect);
+		}
+
 	}
 
 }

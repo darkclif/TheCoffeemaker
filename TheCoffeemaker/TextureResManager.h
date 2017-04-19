@@ -10,15 +10,22 @@ namespace CMaker {
 	/* TEXTURES */
 	enum class Texture {
 		/* Blank texture */
-		NONE, 
+		NONE
 
 		/* Logos */
-		SMALL_LOGO, 
-		FOCZKA_ENGINE_LOGO,
-		TECH_LOGOS,
-		BUBUS_FACE
+		,SMALL_LOGO 
+		,FOCZKA_ENGINE_LOGO
+		,TECH_LOGOS
+		,BUBUS_FACE
 
-		/* Others */
+		/* Game entities */
+		,TABLE
+		,BACKGROUND
+		,COFFEE_SMALL
+		, COFFEE_BIG
+		, COFFEE_SMALL_STACK
+		, COFFEE_BIG_STACK
+		, HEAT_BAR
 	};
 
 	/* Textures managment */
@@ -31,10 +38,15 @@ namespace CMaker {
 										~TextureResManager();
 
 	private:
+		struct TextureInfo {
+			std::string path;
+			bool		smooth;
+		};
+
 		void							loadTexture(CMaker::Texture _texture);
 
 		std::map< CMaker::Texture, std::unique_ptr< sf::Texture > >		resources;
-		static const std::map< CMaker::Texture, std::string >			paths;
+		static const std::map< CMaker::Texture, TextureInfo >			res_info;
 	};
 
 }

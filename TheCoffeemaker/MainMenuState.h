@@ -2,7 +2,7 @@
 #include <memory>
 
 #include <TheCoffeeMaker/State.h>
-#include <TheCoffeeMaker/Menu.h>
+#include <TheCoffeeMaker/MainMenu.h>
 #include <TheCoffeeMaker/SimpleAnimation.h>
 
 namespace CMaker {
@@ -23,7 +23,7 @@ namespace CMaker {
 
 	private:
 		/* Units */
-		std::unique_ptr< CMaker::Menu >	menuMain;
+		std::unique_ptr< CMaker::MainMenu >	menuMain;
 
 		/* Events */
 		std::unique_ptr< CMaker::SimpleAnimation >	animLogo;

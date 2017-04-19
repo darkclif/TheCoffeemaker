@@ -14,7 +14,15 @@ namespace CMaker {
 	{
 		switch (_event.type) {
 			/* On key pressed */
-			case sf::Event::EventType::KeyPressed: this->endIntro(); break;
+			case sf::Event::EventType::KeyPressed: 
+				this->endIntro(); 
+				break;
+			/* On mouse button pressed */
+			case sf::Event::EventType::MouseButtonPressed:
+				if (_event.mouseButton.button == sf::Mouse::Button::Left) {
+					this->endIntro();
+				}
+				break;
 			default: break;
 		}
 	}

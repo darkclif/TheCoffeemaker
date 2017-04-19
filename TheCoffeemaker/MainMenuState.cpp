@@ -33,24 +33,7 @@ namespace CMaker {
 		animBubus->loadAnimation<AnimationFactory::PredefAnimation::LEVITATE>();
 
 		// MAIN MENU
-		menuMain = std::make_unique<CMaker::Menu>(getGame());
-		
-		// Main page
-		menuMain->addPage(1);
-		
-		menuMain->addEntry(1, "Start");
-		menuMain->addEntry(1, "Options");
-		menuMain->addEventFunctionPush(1, Menu::Entry::Action::SELECTED, 2);
-		menuMain->addEntry(1, "Credits");
-		menuMain->addEntry(1, "Exit");
-		menuMain->addEventFunction(1, Menu::Entry::Action::SELECTED, [this]() { this->getGame()->getStateMachine().reqStackClear(); });
-
-		// Options page
-		menuMain->addPage(2);
-
-		menuMain->addEntry(2, "Player");
-		menuMain->addEntry(2, "Back");
-		menuMain->addEventFunctionPop(2, Menu::Entry::Action::SELECTED);
+		menuMain = std::make_unique<CMaker::MainMenu>(getGame());
 
 		// Add to queues
 		animBubus->addUpdateQueue(this);

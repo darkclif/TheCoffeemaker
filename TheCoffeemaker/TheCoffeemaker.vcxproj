@@ -122,8 +122,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationFactory.cpp" />
+    <ClCompile Include="Coffee.cpp" />
+    <ClCompile Include="CoffeeBig.cpp" />
+    <ClCompile Include="CoffeeSmall.cpp" />
+    <ClCompile Include="CoffeeStack.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Eventable.cpp" />
+    <ClCompile Include="GameLevelState.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="SimpleAnimation.cpp" />
@@ -155,8 +161,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationFactory.h" />
+    <ClInclude Include="Coffee.h" />
+    <ClInclude Include="CoffeeBig.h" />
+    <ClInclude Include="CoffeeSmall.h" />
+    <ClInclude Include="CoffeeStack.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Eventable.h" />
+    <ClInclude Include="GameLevelState.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="SimpleAnimation.h" />

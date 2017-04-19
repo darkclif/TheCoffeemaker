@@ -7,8 +7,10 @@
 
 #include <TheCoffeeMaker/IntroState.h>
 #include <TheCoffeeMaker/MainMenuState.h>
+#include <TheCoffeeMaker/GameLevelState.h>
 
 #include <TheCoffeeMaker/Game.h>
+#include <TheCoffeeMaker/Tools.h>
 
 namespace CMaker {
 
@@ -125,7 +127,7 @@ namespace CMaker {
 	*/
 	void StateMachine::UpdateStates(sf::Time _delta)
 	{
-		for (auto it = stateStack.cbegin(); it != stateStack.cend(); ++it) {
+		for (auto it = stateStack.rbegin(); it != stateStack.rend(); ++it) {
 			(*it)->Update(_delta);
 
 			if (!(*it)->isTimeTrans()) {
@@ -171,6 +173,7 @@ namespace CMaker {
 	{
 		registerState<CMaker::IntroState>(EnumState::INTRO);
 		registerState<CMaker::MainMenuState>(EnumState::MAIN_MENU);
+		registerState<CMaker::GameLevelState>(EnumState::GAME_LEVEL);
 	}
 
 	bool StateMachine::HandleGlobalInput(sf::Event& _event)
@@ -182,8 +185,10 @@ namespace CMaker {
 				/* Keys */
 				case sf::Event::EventType::KeyPressed:
 					switch (_event.key.code) {
-						case sf::Keyboard::A: break;
-						case sf::Keyboard::B: break;
+						case sf::Keyboard::A: Tools::moveView(game->getRender(), sf::Vector2f(-10.f, 0.f)); break;
+						case sf::Keyboard::D: Tools::moveView(game->getRender(), sf::Vector2f(10.f, 0.f)); break;
+						case sf::Keyboard::W: Tools::moveView(game->getRender(), sf::Vector2f(0.f, -10.f)); break;
+						case sf::Keyboard::S: Tools::moveView(game->getRender(), sf::Vector2f(0.f, 10.f)); break;
 						default: break;
 					}
 					break;

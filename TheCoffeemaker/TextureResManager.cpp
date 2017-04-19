@@ -5,13 +5,24 @@
 
 namespace CMaker {
 	/* PATHS */
-	const std::map< CMaker::Texture, std::string > TextureResManager::paths = {
-		{ Texture::SMALL_LOGO, "textures/small_logo.png" },
-		{ Texture::FOCZKA_ENGINE_LOGO, "textures/foczka_engine.png" },
-		{ Texture::TECH_LOGOS, "textures/tech_logos.png" },
-		{ Texture::BUBUS_FACE, "textures/bubus_face.png" },
+	const std::map< CMaker::Texture, TextureResManager::TextureInfo > TextureResManager::res_info = {
+		/* Game entities */
+		{ Texture::TABLE, { "textures/table.png", false } },
+		{ Texture::BACKGROUND, {"textures/background.png", false} },
+		{ Texture::COFFEE_SMALL, { "textures/coffee_small.png", false } },
+		{ Texture::COFFEE_BIG, { "textures/coffee_big.png", false } },
+		{ Texture::COFFEE_SMALL_STACK,{ "textures/coffee_small_stack.png", false } },
+		{ Texture::COFFEE_BIG_STACK,{ "textures/coffee_big_stack.png", false } },
+		{ Texture::HEAT_BAR,{ "textures/heat_bars.png", false } },
+
+		/* Logos */
+		{ Texture::SMALL_LOGO, { "textures/small_logo.png", true } },
+		{ Texture::FOCZKA_ENGINE_LOGO, { "textures/foczka_engine.png", true } },
+		{ Texture::TECH_LOGOS, { "textures/tech_logos.png", true } },
+		{ Texture::BUBUS_FACE, { "textures/bubus_face.png", true } },
 		
-		{ Texture::NONE, "textures/none.png" }
+		/* Special */
+		{ Texture::NONE, { "textures/none.png", true } }
 	};
 
 	sf::Texture & TextureResManager::getTexture(CMaker::Texture _tex)
@@ -42,11 +53,11 @@ namespace CMaker {
 	void TextureResManager::loadTexture(CMaker::Texture _texture)
 	{
 		// Get path to this resource
-		std::string lPath;
+		TextureInfo lTexInfo;
 
-		auto it = paths.find(_texture);
-		if (it != paths.end()) {
-			lPath = it->second;
+		auto it = res_info.find(_texture);
+		if (it != res_info.end()) {
+			lTexInfo = it->second;
 		}
 		else {
 			throw new std::exception("Path to this texture not found.");
@@ -54,13 +65,13 @@ namespace CMaker {
 
 		// Load and insert resource
 		std::unique_ptr< sf::Texture > tmpTexture( new sf::Texture() );
-		if (!tmpTexture->loadFromFile(lPath)) {
-			std::string msg = "Texture not found in given path: " + lPath;
+		if (!tmpTexture->loadFromFile(lTexInfo.path)) {
+			std::string msg = "Texture not found in given path: " + lTexInfo.path;
 			throw new std::exception(msg.c_str());
 		}
 
 		// Process texture
-		tmpTexture->setSmooth(true);
+		tmpTexture->setSmooth(lTexInfo.smooth);
 
 		resources.insert(std::make_pair(_texture, std::move(tmpTexture)));
 	}

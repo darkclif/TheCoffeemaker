@@ -24,6 +24,12 @@ namespace CMaker {
 		/* Set origin of sprite */
 		void				setOriginAlign(OriginAlign _align = OriginAlign::MIDDLE_CENTER);
 
+		/* Get origin align */
+		OriginAlign			getOriginAlign();
+
+		/* Resize unit sprite to fit the whole window */
+		void				fitRenderView(sf::RenderWindow& _render);
+
 		/* Set color alpha */
 		void				setColorAlpha(sf::Uint8 _alpha);
 		
@@ -34,6 +40,10 @@ namespace CMaker {
 		/* Change unit visibilty */
 		void				setVisible(bool _show);
 		bool				isVisible();
+
+		/* Change delete indicator */
+		void				setToDelete(bool _delete);
+		bool				isToDelete();
 
 		/* Constructor / Destructor */
 							Unit();
@@ -47,8 +57,20 @@ namespace CMaker {
 		/* Load texture from ResourcesManager */
 		void				loadTexture();
 
+		/* Indicate that this unit should be deleted
+
+			This should be used by queues containing this unit.
+		*/
+		bool				toDelete;
+
+		/* TODO: NOT_USED: If unit should be rendered */
 		bool				visible;
+		
+		/* My enum for textures */
 		CMaker::Texture		enumTexture;
+		
+		/* How unit origin should be aligned */
+		OriginAlign			originAlign;
 	};
 
 }
