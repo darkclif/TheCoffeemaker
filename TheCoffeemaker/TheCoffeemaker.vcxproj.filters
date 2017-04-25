@@ -73,6 +73,12 @@
     <Filter Include="Source Files\StatesMachine\States">
       <UniqueIdentifier>{8fee90b8-1762-478d-b291-0c5679658f37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Menu\Base">
+      <UniqueIdentifier>{28809805-7210-44da-8e24-2432b123284e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu\Base">
+      <UniqueIdentifier>{4bfada2c-72f3-41cd-af35-38b4943b788f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,9 +156,6 @@
     <ClCompile Include="Eventable.cpp">
       <Filter>Source Files\Entity\EntityBase</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="StateMachine.cpp">
       <Filter>Source Files\StatesMachine</Filter>
     </ClCompile>
@@ -185,6 +188,30 @@
     </ClCompile>
     <ClCompile Include="CoffeeBig.cpp">
       <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="HeatBar.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeMachine.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Bin.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseGameState.cpp">
+      <Filter>Source Files\StatesMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Menu\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPage.cpp">
+      <Filter>Source Files\Menu\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PageEntry.cpp">
+      <Filter>Source Files\Menu\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,9 +290,6 @@
     <ClInclude Include="Eventable.h">
       <Filter>Header Files\Entity\EntityBase</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="StateMachine.h">
       <Filter>Header Files\StatesMachine</Filter>
     </ClInclude>
@@ -298,6 +322,30 @@
     </ClInclude>
     <ClInclude Include="CoffeeStack.h">
       <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="HeatBar.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Bin.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeMachine.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseGameState.h">
+      <Filter>Header Files\StatesMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Menu\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuPage.h">
+      <Filter>Header Files\Menu\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PageEntry.h">
+      <Filter>Header Files\Menu\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

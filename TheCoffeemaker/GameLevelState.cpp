@@ -1,8 +1,11 @@
 #include "GameLevelState.h"
 
 #include <TheCoffeeMaker/Game.h>
+#include <TheCoffeeMaker/StateMachine.h>
+
 #include <TheCoffeeMaker/CoffeeSmall.h>
 #include <TheCoffeeMaker/CoffeeBig.h>
+#include <TheCoffeeMaker/CoffeeMachine.h>
 
 namespace CMaker {
 	/* Manage state */
@@ -12,7 +15,7 @@ namespace CMaker {
 			/* On key pressed */
 			case sf::Event::EventType::KeyPressed:
 				switch (_event.key.code) {
-					case sf::Keyboard::Up: break;
+					case sf::Keyboard::Escape: getGame()->getStateMachine().reqPushState(EnumState::PAUSE_GAME); break;
 					default: break;
 				}
 				break;
@@ -41,6 +44,28 @@ namespace CMaker {
 	void GameLevelState::Update(const sf::Time _time)
 	{
 		State::Update(_time);
+
+		// Check for units to delete
+		auto findIt = entCoffeeList.end();
+		int lCount = 0; // There should not be duplicated entities in queue, but check it
+		bool lFirstSearch = true;
+
+		do {
+			for (auto it = entCoffeeList.begin(); it != entCoffeeList.end(); ++it) {
+				if ((*it)->isToDelete()) {
+					findIt = it;
+
+					if (lFirstSearch) lCount++;
+					if (!lFirstSearch) it = entCoffeeList.end();
+				}
+			}
+
+			if (findIt != entCoffeeList.end()) {
+				entCoffeeList.erase(findIt);
+				lCount--;
+			}
+		} while (lCount > 0);
+
 	}
 
 	void GameLevelState::Render()
@@ -64,15 +89,26 @@ namespace CMaker {
 		entTable->setLayer(2);
 		entTable->addDrawQueue(this);
 
+		/* Bin */
+		entBin = std::make_unique<CMaker::Bin>(sf::Vector2f(30.f, 500.f));
+		entBin->setLayer(3);
+		entBin->addDrawQueue(this);
+
 		/* Coffeestacks */
 		entCoffeeStacks.push_back( std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeType::BIG, sf::Vector2f(30.f, 460.f)) );
 		entCoffeeStacks.back()->setLayer(3);
 		entCoffeeStacks.back()->addDrawQueue(this);
 
-		entCoffeeStacks.push_back(std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeType::SMALL, sf::Vector2f(55.f, 467.f)));
+		entCoffeeStacks.push_back(std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeType::SMALL, sf::Vector2f(75.f, 460.f)));
 		entCoffeeStacks.back()->setLayer(3);
 		entCoffeeStacks.back()->addDrawQueue(this);
 
+		 /* Coffee machine */
+		entCoffeeMachine = std::make_unique<CMaker::CoffeeMachine>(sf::Vector2f(690.f, 460.f));
+		entCoffeeMachine->setScale(sf::Vector2f(3.f, 3.f));
+		entCoffeeMachine->setLayer(3);
+		entCoffeeMachine->addDrawQueue(this);
+		entCoffeeMachine->addUpdateQueue(this);
 	}
 	
 	/* Events */
@@ -96,14 +132,32 @@ namespace CMaker {
 
 	void GameLevelState::onMouseLeftReleased(sf::Event _event)
 	{
-		draggedObject = nullptr;
+		sf::Vector2f releasePoint = getGame()->getRender().mapPixelToCoords(sf::Vector2i(_event.mouseButton.x, _event.mouseButton.y));
+
+		if (draggedObject) {
+			// If released above bin
+			if (entBin->getGlobalBounds().contains(releasePoint)) {
+				draggedObject->setToDelete(true);
+			}
+
+			// If released above coffee machine
+			if (entCoffeeMachine->getGlobalBounds().contains(releasePoint)) {
+				dynamic_cast<Coffee*>(draggedObject)->attachToMachine(entCoffeeMachine.get());
+			}
+
+			draggedObject = nullptr;
+		}
 	}
 
 	void GameLevelState::onMouseMoved(sf::Event _event)
 	{
+		sf::Vector2f dragPoint = getGame()->getRender().mapPixelToCoords(sf::Vector2i(_event.mouseMove.x, _event.mouseMove.y));
+
+		// If bin should open 
+		entBin->setOpen(entBin->getGlobalBounds().contains(dragPoint));
+		
 		// If something is dragged
 		if (draggedObject) {
-			sf::Vector2f dragPoint = getGame()->getRender().mapPixelToCoords(sf::Vector2i(_event.mouseMove.x, _event.mouseMove.y));
 			draggedObject->setPosition(dragPoint);
 		}
 	}
@@ -132,6 +186,7 @@ namespace CMaker {
 	{
 		for (auto& lCoffee : entCoffeeList) {
 			if (lCoffee->getGlobalBounds().contains(_pos)) {
+				lCoffee->detachFromMachine();
 				draggedObject = lCoffee.get();
 				return true;
 			}

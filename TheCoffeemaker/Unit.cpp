@@ -85,9 +85,15 @@ namespace CMaker {
 		setScale(lSize.x / getLocalBounds().width, lSize.y / getLocalBounds().height);	
 	}
 
-	void Unit::Draw(sf::RenderWindow & _render)
+	void Unit::Draw(sf::RenderWindow& _render, sf::RenderStates _states)
 	{
-		_render.draw(*this);
+		_render.draw(*this, _states);
+
+		_states.transform *= getTransform();
+
+		for (auto& lChild : children) {
+			lChild->Draw(_render, _states);
+		}
 	}
 
 	/*
@@ -102,6 +108,28 @@ namespace CMaker {
 	CMaker::Texture Unit::getTextureEnum()
 	{
 		return enumTexture;
+	}
+
+	void Unit::addChild(std::unique_ptr<Unit> _unit)
+	{
+		_unit->parent = this;
+		children.push_back(std::move(_unit));
+	}
+
+	Unit * Unit::getParent()
+	{
+		return parent;
+	}
+
+	sf::Transform Unit::getWorldTransform()
+	{
+		sf::Transform transform = sf::Transform::Identity;
+
+		for (const Unit* unit = this; unit != nullptr; unit = unit->parent) {
+			transform = unit->getTransform() * transform;
+		}
+
+		return transform;
 	}
 
 	/* Load texture from ResourceManager */

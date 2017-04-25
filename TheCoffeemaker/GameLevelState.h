@@ -5,7 +5,9 @@
 #include <TheCoffeeMaker/SimpleAnimation.h>
 
 #include <TheCoffeeMaker/Coffee.h>
+#include <TheCoffeeMaker/Bin.h>
 #include <TheCoffeeMaker/CoffeeStack.h>
+#include <TheCoffeeMaker/CoffeeMachine.h>
 
 #include <memory>
 
@@ -14,7 +16,6 @@ namespace CMaker {
 	class GameLevelState:
 		public State
 	{
-	public:
 	public:
 		void					HandleInput(const sf::Event& _event) override;
 		void					Update(const sf::Time _time) override;
@@ -30,6 +31,8 @@ namespace CMaker {
 		/* Units */
 		std::unique_ptr<CMaker::Unit>	entTable;
 		std::unique_ptr<CMaker::Unit>	entBackground;
+		std::unique_ptr<CMaker::Bin>	entBin;
+		std::unique_ptr<CMaker::CoffeeMachine> entCoffeeMachine;
 
 		std::vector<std::unique_ptr<CMaker::CoffeeStack>>	entCoffeeStacks;
 		std::vector<std::unique_ptr<CMaker::Coffee>>		entCoffeeList;

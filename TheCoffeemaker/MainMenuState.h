@@ -11,9 +11,7 @@ namespace CMaker {
 		public State
 	{
 	public:
-		void							HandleInput(const sf::Event& _event);
-		void							Update(const sf::Time _time);
-		void							Render();
+		void							HandleInput(const sf::Event& _event) override;
 
 		void							initEntities();
 

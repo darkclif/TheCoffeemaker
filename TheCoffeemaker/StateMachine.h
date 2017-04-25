@@ -11,7 +11,8 @@ namespace CMaker {
 	enum class EnumState {
 		INTRO,
 		MAIN_MENU,
-		GAME_LEVEL
+		GAME_LEVEL,
+		PAUSE_GAME
 	};
 
 	class StateMachine
@@ -60,6 +61,8 @@ namespace CMaker {
 			@return True if you want to pass event further.
 		*/
 		bool onClose(sf::Event& _event);
+
+		void onResize(sf::Event _event);
 
 	private:
 		std::map< EnumState, std::function<State::Ptr()> >	stateFactory;

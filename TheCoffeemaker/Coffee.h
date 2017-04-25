@@ -1,7 +1,9 @@
 #pragma once
 #include <TheCoffeeMaker/Animation.h>
+#include <TheCoffeeMaker/HeatBar.h>
 
 namespace CMaker {
+	class CoffeeMachine;
 
 	class Coffee:
 		public Animation
@@ -12,8 +14,16 @@ namespace CMaker {
 			BIG
 		};
 
+		/* Get coffee type */
+		CoffeeType		getCoffeeType();
+
+		/* Detach, attach coffee cup from machine */
+		void			detachFromMachine();
+		void			attachToMachine(CoffeeMachine* _machine);
+
 		/* Manage heat */
 		void			setHeat(sf::Uint8 _heat);
+		void			addHeat(sf::Uint8 _heat);
 		sf::Uint8		getHeat();
 
 		/* Constructor / Destructor */
@@ -21,8 +31,17 @@ namespace CMaker {
 						~Coffee();
 
 	private:
-		static const sf::Uint8	HEAT_LIMIT = 9;
+		/* Heat indicator */
+		HeatBar*					entHeatBar;
 
+		/* Coffee machine attachedd */
+		CoffeeMachine*				attachedMachine;
+
+		/* Get coffee type */
+		CoffeeType					coffeeType;
+
+		/* Heat managment */
+		static const sf::Uint8	HEAT_LIMIT = 9;
 		sf::Uint8				heat;
 	};
 

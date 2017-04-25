@@ -19,7 +19,7 @@ namespace CMaker {
 	{
 	public:
 		/* Basic draw, just show the sprite */
-		void virtual		Draw(sf::RenderWindow& _render) override;
+		void virtual		Draw(sf::RenderWindow& _render, sf::RenderStates _states = sf::RenderStates()) override;
 
 		/* Set origin of sprite */
 		void				setOriginAlign(OriginAlign _align = OriginAlign::MIDDLE_CENTER);
@@ -36,6 +36,13 @@ namespace CMaker {
 		/* Change unit texture */
 		void				setTextureEnum(CMaker::Texture _enumTexture);
 		CMaker::Texture		getTextureEnum();
+
+		/* Get Unit parent */
+		void				addChild(std::unique_ptr<Unit> _unit);
+		Unit*				getParent();
+
+		/* Get world transform considering all parents transform */
+		sf::Transform		getWorldTransform();
 
 		/* Change unit visibilty */
 		void				setVisible(bool _show);
@@ -57,8 +64,8 @@ namespace CMaker {
 		/* Load texture from ResourcesManager */
 		void				loadTexture();
 
-		/* Indicate that this unit should be deleted
-
+		/* 
+			Indicate that this unit should be deleted
 			This should be used by queues containing this unit.
 		*/
 		bool				toDelete;
@@ -71,6 +78,12 @@ namespace CMaker {
 		
 		/* How unit origin should be aligned */
 		OriginAlign			originAlign;
+
+		/* Parent unit */
+		Unit*				parent;
+
+		/* Children units */
+		std::vector< std::unique_ptr<Unit> > children;
 	};
 
 }

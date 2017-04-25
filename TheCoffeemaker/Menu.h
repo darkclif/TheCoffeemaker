@@ -1,10 +1,13 @@
 #pragma once
-//#include <TheCoffeeMaker/Updatable.h>
 #include <TheCoffeeMaker/Drawable.h>
 #include <TheCoffeeMaker/Eventable.h>
 #include <TheCoffeeMaker/Game.h>
 
 #include <TheCoffeeMaker/ResourceManager.h>
+
+#include <TheCoffeeMaker/PageEntry.h>
+
+#include <SFML/Graphics.hpp>
 
 #include <map>
 #include <functional>
@@ -14,56 +17,17 @@
 #include <memory>
 
 namespace CMaker {
+	class MenuPage;
 
 	class Menu:
 		public Drawable,
-		public Eventable
+		public Eventable,
+		public sf::Transformable
 	{
 	public:
-		/* What page and what entry is activated */
-		struct PageInfo {
-			PageInfo(int _page, unsigned int _entry) :
-				page{ _page }, entry{ _entry }
-			{
-			};
-
-			int page;
-			unsigned int entry;
-		};
-
-		/* Single menu entry on page with event functions */
-		struct Entry {
-			enum class Action {
-				SELECTED,
-				HIGHLIGHTED,
-				ARROW_LEFT,
-				ARROW_RIGHT
-			};
-
-			Entry(std::string _name) : name{ _name } {};
-
-			/* Trigger event if exist */
-			bool Trigger(Action _action) {
-				bool triggered = false;
-
-				for (auto& funcIt : actFunctions) {
-					if (funcIt.first == _action) {
-						funcIt.second();
-						triggered = true;
-					}
-				}
-
-				return triggered;
-			}
-
-			std::string name;
-			sf::Text	text;
-			std::map< Action, std::function<void()> > actFunctions;
-		};
-
 		/* Manage menu */
 		bool						HandleInput(const sf::Event& _event);
-		void						Draw(sf::RenderWindow& _render);
+		void						Draw(sf::RenderWindow& _render, sf::RenderStates _states = sf::RenderStates()) override;
 
 		/* Constructor / Destructor */
 									Menu(Game* _game);
@@ -71,76 +35,63 @@ namespace CMaker {
 	
 	protected:
 		/* Add empty page menu */
-		void						addPage(int _page);
+		void						addPage(sf::Uint32 _pageNum, std::string _header = "");
 
-		/* Add entry to the end of given menu page */
-		void						addEntry(int _page, std::string _name);
+		/* Add entry to page */
+		void						addEntry(sf::Uint32 _pageNum, std::string _name);
 
-		/* Set starting page and entry on this page */
-		void						setStartingPage(int _page, unsigned int _entry);
+		/* Add function to last page entry */
+		void						addEventFunction(sf::Uint32 _pageNum, EntryAction _action, std::function<void()> _func);
+		void						addEventFunctionPop(sf::Uint32 _pageNum, EntryAction _action); // Pop current page if not last
+		void						addEventFunctionPush(sf::Uint32 _pageNum, EntryAction _action, int _targetPage); // Push next page
 
-		/* Add event function to the last entry of given menu page */
-		void						addEventFunction(int _page, Entry::Action _action, std::function<void()> _func);
-
-		void						addEventFunctionPop(int _page, Entry::Action _action); // Pop current page if not last
-		void						addEventFunctionPush(int _page, Entry::Action _action, int _targetPage); // Push next page
-
-		/* Set font used to draw menu text */
-		void						setFont(CMaker::Font _font);
+		/* Set starting page */
+		void						setStartingPage(sf::Uint32 _page);
 
 		/* Get binded game instance */
 		Game*						getGame();
 
 	private:
 		/* Stack with menu pages, top-most is current page info */
-		std::stack< PageInfo >		stackPages;
+		std::stack<sf::Uint32>		stackPages;
 		
 		/* Map with different menu pages */
-		std::map< int, std::vector<Entry> > 
+		std::map< sf::Uint32, std::unique_ptr< MenuPage > > 
 									mapMenuPages;
 
-		/* Font used to print menu */
-		CMaker::Font				font;
-
-		/* If all entries sf::Text are builded */
-		bool						menuBuilded;
+		/* Get top page */
+		MenuPage&					getCurrentPage();
 
 		/* Global bounds of menu */
 		sf::FloatRect				menuArea;
+
+		/* Initial build of pages */
+		bool						pagesBuilded;
 
 		/* Game object pointer (for get world coords from mouse click events with sf::RenderWindow)*/
 		CMaker::Game*				game;
 
 	private:
-		/* Trigger current entry functions */
-		void						triggerCurrentEntry(Entry::Action _action);
-
-		/* Check if mouse selected any entry of current page */
-		void						checkEntryHighlight(sf::Event _event);
-
-		/* Check if mouse clicked current selected entry*/
+		/* Handle mouse events */
+		void						checkMouseMove(sf::Event _event);
 		void						checkMouseClick(sf::Event _event);
 
-		/* Get currently selected entry */
-		Entry&						getCurrentEntry();
-
-		/* Get current page info */
-		PageInfo&					getCurrentPageInfo();
-
-		/* Get last entry of given page if exist */
-		Entry&						getPageLastEntry(int _page);
-
-		/* Change entry on current page */
-		void						changeEntry(int _change);
-
-		/* Pop current page */
+		/* Pop, push page */
 		void						popPage();
-
-		/* Push page */
 		void						pushPage(int _page);
 
-		/* Build and calculate all entries sf::Text */
-		void						buildMenu();
+		/* Build and calculate all pages */
+		void						buildPages();
+
+	public:
+		struct MenuSettings {
+			const sf::Color FONT_COLOR_HIGHLIGHT = sf::Color(255, 23, 23);
+			const sf::Color FONT_COLOR_NORMAL = sf::Color(255, 255, 255);
+
+			const CMaker::Font FONT_FACE = CMaker::Font::DEFAULT;
+
+			const sf::Vector2f ENTRIES_SPACE = sf::Vector2f(0.f, 50.f);
+		} menuStyle;
 	};
 
 }

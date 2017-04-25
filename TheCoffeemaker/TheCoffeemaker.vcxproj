@@ -122,16 +122,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationFactory.cpp" />
+    <ClCompile Include="Bin.cpp" />
     <ClCompile Include="Coffee.cpp" />
     <ClCompile Include="CoffeeBig.cpp" />
+    <ClCompile Include="CoffeeMachine.cpp" />
     <ClCompile Include="CoffeeSmall.cpp" />
     <ClCompile Include="CoffeeStack.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Eventable.cpp" />
     <ClCompile Include="GameLevelState.cpp" />
+    <ClCompile Include="HeatBar.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuPage.cpp" />
+    <ClCompile Include="PageEntry.cpp" />
+    <ClCompile Include="PauseGameState.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="SimpleAnimation.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="transMoveBy.cpp" />
@@ -161,16 +168,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationFactory.h" />
+    <ClInclude Include="Bin.h" />
     <ClInclude Include="Coffee.h" />
     <ClInclude Include="CoffeeBig.h" />
+    <ClInclude Include="CoffeeMachine.h" />
     <ClInclude Include="CoffeeSmall.h" />
     <ClInclude Include="CoffeeStack.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Eventable.h" />
     <ClInclude Include="GameLevelState.h" />
+    <ClInclude Include="HeatBar.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuPage.h" />
+    <ClInclude Include="PageEntry.h" />
+    <ClInclude Include="PauseGameState.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="SimpleAnimation.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="transMoveBy.h" />

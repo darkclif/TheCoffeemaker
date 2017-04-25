@@ -8,12 +8,17 @@ namespace CMaker {
 	const std::map< CMaker::Texture, TextureResManager::TextureInfo > TextureResManager::res_info = {
 		/* Game entities */
 		{ Texture::TABLE, { "textures/table.png", false } },
-		{ Texture::BACKGROUND, {"textures/background.png", false} },
+		{ Texture::BACKGROUND, {"textures/background.png", true} },
+
 		{ Texture::COFFEE_SMALL, { "textures/coffee_small.png", false } },
 		{ Texture::COFFEE_BIG, { "textures/coffee_big.png", false } },
 		{ Texture::COFFEE_SMALL_STACK,{ "textures/coffee_small_stack.png", false } },
 		{ Texture::COFFEE_BIG_STACK,{ "textures/coffee_big_stack.png", false } },
 		{ Texture::HEAT_BAR,{ "textures/heat_bars.png", false } },
+		
+		{ Texture::BIN,{ "textures/bin.png", false } },
+
+		{ Texture::COFFEE_MACHINE,{ "textures/coffee_machine.png", false } },
 
 		/* Logos */
 		{ Texture::SMALL_LOGO, { "textures/small_logo.png", true } },

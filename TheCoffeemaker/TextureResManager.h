@@ -26,6 +26,8 @@ namespace CMaker {
 		, COFFEE_SMALL_STACK
 		, COFFEE_BIG_STACK
 		, HEAT_BAR
+		, BIN
+		, COFFEE_MACHINE
 	};
 
 	/* Textures managment */

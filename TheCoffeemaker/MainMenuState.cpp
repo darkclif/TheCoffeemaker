@@ -11,16 +11,6 @@ namespace CMaker {
 		menuMain->HandleInput(_event);
 	}
 
-	void MainMenuState::Update(const sf::Time _time)
-	{
-		State::Update(_time);
-	}
-
-	void MainMenuState::Render()
-	{
-		State::Render();
-	}
-
 	void MainMenuState::initEntities()
 	{
 		// ENTITIES
@@ -34,6 +24,9 @@ namespace CMaker {
 
 		// MAIN MENU
 		menuMain = std::make_unique<CMaker::MainMenu>(getGame());
+		menuMain->setPosition(200.f, 100.f);
+		menuMain->setRotation(20.f);
+		menuMain->setScale(sf::Vector2f(2.f, 2.f));
 
 		// Add to queues
 		animBubus->addUpdateQueue(this);

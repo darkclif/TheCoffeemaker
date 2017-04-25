@@ -9,22 +9,22 @@ namespace CMaker {
 		Menu(_game)
 	{
 		// Main page
-		addPage(1);
+		addPage(1, "Menu glowne");
 
 		addEntry(1, "Start");
-		addEventFunction(1, Menu::Entry::Action::SELECTED, [this]() { getGame()->getStateMachine().reqPushState(EnumState::GAME_LEVEL); });
+		addEventFunction(1, EntryAction::SELECTED, [this]() { getGame()->getStateMachine().reqPushState(EnumState::GAME_LEVEL); });
 		addEntry(1, "Options");
-		addEventFunctionPush(1, Menu::Entry::Action::SELECTED, 2);
+		addEventFunctionPush(1, EntryAction::SELECTED, 2);
 		addEntry(1, "Credits");
 		addEntry(1, "Exit");
-		addEventFunction(1, Menu::Entry::Action::SELECTED, [this]() { getGame()->getStateMachine().reqStackClear(); });
+		addEventFunction(1, EntryAction::SELECTED, [this]() { getGame()->getStateMachine().reqStackClear(); });
 
 		// Options page
 		addPage(2);
 
 		addEntry(2, "Player");
 		addEntry(2, "Back");
-		addEventFunctionPop(2, Menu::Entry::Action::SELECTED);
+		addEventFunctionPop(2, EntryAction::SELECTED);
 	}
 
 	MainMenu::~MainMenu()

@@ -7,7 +7,7 @@ namespace CMaker {
 	class Drawable
 	{
 	public:
-		void virtual		Draw(sf::RenderWindow& _render) = 0;
+		void virtual		Draw(sf::RenderWindow& _render, sf::RenderStates _states = sf::RenderStates()) = 0;
 
 		void				setLayer(sf::Uint32 _layer);
 		sf::Uint32			getLayer() const;

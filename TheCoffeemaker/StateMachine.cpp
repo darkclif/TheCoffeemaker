@@ -8,6 +8,7 @@
 #include <TheCoffeeMaker/IntroState.h>
 #include <TheCoffeeMaker/MainMenuState.h>
 #include <TheCoffeeMaker/GameLevelState.h>
+#include <TheCoffeeMaker/PauseGameState.h>
 
 #include <TheCoffeeMaker/Game.h>
 #include <TheCoffeeMaker/Tools.h>
@@ -174,28 +175,33 @@ namespace CMaker {
 		registerState<CMaker::IntroState>(EnumState::INTRO);
 		registerState<CMaker::MainMenuState>(EnumState::MAIN_MENU);
 		registerState<CMaker::GameLevelState>(EnumState::GAME_LEVEL);
+		registerState<CMaker::PauseGameState>(EnumState::PAUSE_GAME);
 	}
 
 	bool StateMachine::HandleGlobalInput(sf::Event& _event)
 	{
-			switch (_event.type) {
-				/* Events */
-				case sf::Event::EventType::Closed: onClose(_event); break;
+		switch (_event.type) {
+			/* Closed */
+			case sf::Event::EventType::Closed: onClose(_event); break;
 
-				/* Keys */
-				case sf::Event::EventType::KeyPressed:
-					switch (_event.key.code) {
-						case sf::Keyboard::A: Tools::moveView(game->getRender(), sf::Vector2f(-10.f, 0.f)); break;
-						case sf::Keyboard::D: Tools::moveView(game->getRender(), sf::Vector2f(10.f, 0.f)); break;
-						case sf::Keyboard::W: Tools::moveView(game->getRender(), sf::Vector2f(0.f, -10.f)); break;
-						case sf::Keyboard::S: Tools::moveView(game->getRender(), sf::Vector2f(0.f, 10.f)); break;
-						default: break;
-					}
-					break;
-				default: break;
-			}
+			/* Resized */
+			case sf::Event::EventType::Resized: onResize(_event); break;
 
-			return true;
+			/* Keys */
+			case sf::Event::EventType::KeyPressed:
+				switch (_event.key.code) {
+					// DEBUG
+					case sf::Keyboard::A: Tools::moveView(game->getRender(), sf::Vector2f(-10.f, 0.f)); break;
+					case sf::Keyboard::D: Tools::moveView(game->getRender(), sf::Vector2f(10.f, 0.f)); break;
+					case sf::Keyboard::W: Tools::moveView(game->getRender(), sf::Vector2f(0.f, -10.f)); break;
+					case sf::Keyboard::S: Tools::moveView(game->getRender(), sf::Vector2f(0.f, 10.f)); break;
+					default: break;
+				}
+				break;
+			default: break;
+		}
+
+		return true;
 	}
 
 	/*
@@ -205,5 +211,28 @@ namespace CMaker {
 		this->reqStackClear();
 
 		return false;
+	}
+
+	void StateMachine::onResize(sf::Event _event) {
+		// Fit render window to screen
+		sf::Vector2f lBasicViewSize = game->getRender().getDefaultView().getSize();
+		
+		double h_ratio = (double)_event.size.height / (double)lBasicViewSize.y;
+		double w_ratio = (double)_event.size.width / (double)lBasicViewSize.x;
+
+		sf::View lView = game->getRender().getView();
+
+		if (h_ratio < w_ratio) {
+			double lWidthRatio = (h_ratio / w_ratio);
+			double lWidthOffset = (1.f - lWidthRatio) / 2.f;
+			lView.setViewport(sf::FloatRect((float)lWidthOffset, 0.f, (float)lWidthRatio, 1.f));
+		}
+		else {
+			double lHeightRatio = (w_ratio / h_ratio);
+			double lHeightOffset = (1.f - lHeightRatio) / 2.f;
+			lView.setViewport(sf::FloatRect(0.f, (float)lHeightOffset, 1.f, (float)lHeightRatio));
+		}
+
+		game->getRender().setView(lView);
 	}
 }

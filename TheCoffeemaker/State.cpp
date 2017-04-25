@@ -121,8 +121,6 @@ namespace CMaker {
 		timeTrans{ _timeTrans },
 		rendTrans{ _rendTrans }
 	{
-		timeTrans = false;
-		rendTrans = false;
 	}
 
 	State::~State()
