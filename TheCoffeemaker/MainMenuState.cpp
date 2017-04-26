@@ -24,9 +24,7 @@ namespace CMaker {
 
 		// MAIN MENU
 		menuMain = std::make_unique<CMaker::MainMenu>(getGame());
-		menuMain->setPosition(200.f, 100.f);
-		menuMain->setRotation(20.f);
-		menuMain->setScale(sf::Vector2f(2.f, 2.f));
+		menuMain->setPosition(100.f, 100.f);
 
 		// Add to queues
 		animBubus->addUpdateQueue(this);

@@ -9,14 +9,15 @@ namespace CMaker {
 		Menu(_game)
 	{
 		// Main page
-		addPage(1);
+		addPage(1, "Pause menu");
 
 		addEntry(1, "Return");
 		addEventFunction(1, EntryAction::SELECTED, [this]() { getGame()->getStateMachine().reqPopState(); });
 		addEntry(1, "End game");
 		addEventFunctionPush(1, EntryAction::SELECTED, 2);
 
-		addPage(2);
+		// Are you sure ?
+		addPage(2, "Are you sure ?");
 
 		addEntry(2, "Yes");
 		addEventFunction(2, EntryAction::SELECTED, [this]() { getGame()->getStateMachine().reqPopState(); getGame()->getStateMachine().reqPopState(); });

@@ -19,12 +19,17 @@ namespace CMaker {
 
 	void PauseGameState::initEntities()
 	{
-		menuPause = std::make_unique<CMaker::PauseMenu>(getGame());
-		menuPause->addDrawQueue(this);
-
+		// Fade screen
 		sf::Vector2f lSize = getGame()->getRender().getView().getSize();
-		fadeRect.setSize(sf::Vector2f(lSize.x, lSize.y) );
+		fadeRect.setSize(sf::Vector2f(lSize.x, lSize.y));
 		fadeRect.setFillColor(sf::Color(0, 0, 0, 100));
+	
+		// Pause menu
+		menuPause = std::make_unique<CMaker::PauseMenu>(getGame());
+		menuPause->setPosition(200.f, 200.f);
+
+		// Add queues 
+		menuPause->addDrawQueue(this);
 	}
 
 	/* Constructor / Destructor */

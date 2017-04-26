@@ -85,12 +85,14 @@ namespace CMaker {
 
 	public:
 		struct MenuSettings {
-			const sf::Color FONT_COLOR_HIGHLIGHT = sf::Color(255, 23, 23);
-			const sf::Color FONT_COLOR_NORMAL = sf::Color(255, 255, 255);
+			const sf::Color		FONT_COLOR_HIGHLIGHT = sf::Color(255, 23, 23);
+			const sf::Color		FONT_COLOR_NORMAL = sf::Color(255, 255, 255);
+			const sf::Color		TEXT_OUTLINE_COLOR = sf::Color::Black;
 
-			const CMaker::Font FONT_FACE = CMaker::Font::DEFAULT;
+			const float			TEXT_OUTLINE_THICKNESS = 2.f;
+			const CMaker::Font	FONT_FACE = CMaker::Font::DEFAULT;
 
-			const sf::Vector2f ENTRIES_SPACE = sf::Vector2f(0.f, 50.f);
+			const sf::Vector2f	ENTRIES_SPACE = sf::Vector2f(0.f, 50.f);
 		} menuStyle;
 	};
 

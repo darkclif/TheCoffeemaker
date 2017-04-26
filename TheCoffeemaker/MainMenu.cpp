@@ -9,7 +9,7 @@ namespace CMaker {
 		Menu(_game)
 	{
 		// Main page
-		addPage(1, "Menu glowne");
+		addPage(1, "Main menu");
 
 		addEntry(1, "Start");
 		addEventFunction(1, EntryAction::SELECTED, [this]() { getGame()->getStateMachine().reqPushState(EnumState::GAME_LEVEL); });
@@ -20,7 +20,7 @@ namespace CMaker {
 		addEventFunction(1, EntryAction::SELECTED, [this]() { getGame()->getStateMachine().reqStackClear(); });
 
 		// Options page
-		addPage(2);
+		addPage(2, "Options");
 
 		addEntry(2, "Player");
 		addEntry(2, "Back");

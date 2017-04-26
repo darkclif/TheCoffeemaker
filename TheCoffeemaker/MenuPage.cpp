@@ -86,6 +86,8 @@ namespace CMaker {
 		// Not in menu area
 		if (!pageArea.contains(_point))
 			return;
+		
+		_point.x = 1.f; // We consider only _point.y to detect shorter entries
 
 		// Check all entries of page
 		for (sf::Uint32 i = 0; i < entries.size(); ++i) {
@@ -104,6 +106,8 @@ namespace CMaker {
 	{
 		// Check if current entry is clicked 
 		auto& lEntry = entries[currEntry];
+		
+		_point.x = 1.f; // We consider only _point.y to detect shorter entries
 
 		if (lEntry.getTextBox().getGlobalBounds().contains(_point)) {
 			lEntry.Trigger(EntryAction::SELECTED);
@@ -122,10 +126,13 @@ namespace CMaker {
 			header.setPosition(0.f, 0.f);
 			header.move(sf::Vector2f(numTextBox * style.ENTRIES_SPACE.x, numTextBox * style.ENTRIES_SPACE.y));
 
+			header.setOutlineThickness(style.TEXT_OUTLINE_THICKNESS);
+			header.setOutlineColor(style.TEXT_OUTLINE_COLOR);
+
 			// Expand menu area
 			pageArea = header.getGlobalBounds();
 			
-			numTextBox++;
+			numTextBox += 2;
 		}
 
 		// Entries
@@ -135,6 +142,9 @@ namespace CMaker {
 			lTextbox.setFont(ResourceMgr.getResource(style.FONT_FACE));
 			lTextbox.setPosition(0.f, 0.f);
 			lTextbox.move(sf::Vector2f(numTextBox * style.ENTRIES_SPACE.x,numTextBox * style.ENTRIES_SPACE.y));
+			
+			lTextbox.setOutlineThickness(style.TEXT_OUTLINE_THICKNESS);
+			lTextbox.setOutlineColor(style.TEXT_OUTLINE_COLOR);
 
 			// Expand menu area
 			if (numTextBox == 0) {

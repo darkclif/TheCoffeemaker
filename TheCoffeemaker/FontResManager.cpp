@@ -5,7 +5,7 @@
 namespace CMaker{
 	/* PATHS */
 	const std::map< CMaker::Font, std::string > FontResManager::paths = {
-		{ Font::DEFAULT, "fonts/8bit.ttf"}
+		{ Font::DEFAULT, "fonts/joystix.ttf"}
 	};
 
 	/*
@@ -23,7 +23,14 @@ namespace CMaker{
 				return getFont(_font);
 			}
 			catch (std::exception e) {
-				C_DEBUG << "Exception when loading font: " << e.what() << std::endl;
+				C_DEBUG << S_WARNING << "Exception when loading font: " << e.what() << std::endl;
+
+				if (_font == Font::DEFAULT) {
+					throw std::exception("Exception when loading default font!");
+				}
+				else {
+					return getFont(Font::DEFAULT);
+				}
 			}
 		}
 	}
