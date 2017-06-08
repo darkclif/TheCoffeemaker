@@ -3,7 +3,7 @@
 #include <TheCoffeeMaker/CoffeeMachine.h>
 
 namespace CMaker {
-	Coffee::CoffeeType Coffee::getCoffeeType()
+	Coffee::CoffeeCupSize Coffee::getCoffeeType()
 	{
 		return coffeeType;
 	}
@@ -28,6 +28,16 @@ namespace CMaker {
 		attachedMachine->attachCoffee(this);
 	}
 
+	const CoffeeComposition & Coffee::getComposition() const
+	{
+		return coffeeComposition;
+	}
+
+	void Coffee::addCoffeeComponent(CoffeeComponent _component)
+	{
+		coffeeComposition += _component;
+	}
+
 	/* Manage heat of coffee */
 	void Coffee::setHeat(sf::Uint8 _heat)
 	{
@@ -50,12 +60,12 @@ namespace CMaker {
 	}
 
 	/* Constructor / Destructor */
-	Coffee::Coffee(CoffeeType _type, sf::Vector2f _pos):
+	Coffee::Coffee(CoffeeCupSize _type, sf::Vector2f _pos):
 		heat{1},
 		coffeeType{_type}
 	{
 		// Setup coffee
-		setTextureEnum(_type == CoffeeType::SMALL ? Texture::COFFEE_SMALL : Texture::COFFEE_BIG);
+		setTextureEnum(_type == CoffeeCupSize::SMALL ? Texture::COFFEE_SMALL : Texture::COFFEE_BIG);
 		setPosition(_pos);
 		setScale(sf::Vector2f(3.f, 3.f));
 		setOriginAlign(OriginAlign::MIDDLE_CENTER);

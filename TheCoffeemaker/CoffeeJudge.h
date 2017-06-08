@@ -6,104 +6,33 @@
 
 namespace CMaker {
 
+	/* Coffee types */
+	enum class CoffeeType : int {
+		ESPRESSO = 0,
+		LATTE,
+		CAPPUCINO,
+		AMERICANO,
+
+		_SIZE
+	};
+
 	#define CoffeeJudgeInst CoffeeJudge::getInstance()
 
 	class CoffeeJudge
 	{
 	public:
 		/* Singleton */
-		CoffeeJudge& getInstance() {
+		static CoffeeJudge& getInstance() {
 			static CoffeeJudge instance;
 
 			return instance;
 		}
 
-		/* Coffee types */
-		enum class CoffeeType {
-			ESPRESSO,
-			LATTE,
-			CAPPUCINO,
-			AMERICANO
-		};
+		/* Get coffee composition pattern */
+		const CoffeeComposition& getCoffeeComposition(CoffeeType _type);
 
-		/* Coffee type patterns */
-		std::map<CoffeeType, CoffeeComposition> CoffeeTypePatterns;
-
-		template<CoffeeType Type>
-		const CoffeeComposition& getCoffeePatern() {
-			throw std::exception("CoffeePatern not implemented.");
-		}
-
-		template<>
-		const CoffeeComposition& getCoffeePatern<CoffeeType::ESPRESSO>() {
-			auto it = CoffeeTypePatterns.find(CoffeeType::ESPRESSO);
-
-			if (it != CoffeeTypePatterns.end()) {
-				return it->second;
-			}
-			else {
-				CoffeeComposition lComposition;
-
-				lComposition += CoffeeComponent::ESPRESSO;
-
-				CoffeeTypePatterns.insert(std::make_pair(CoffeeType::ESPRESSO, lComposition));
-			}
-		}
-
-		template<>
-		const CoffeeComposition& getCoffeePatern<CoffeeType::LATTE>() {
-			auto it = CoffeeTypePatterns.find(CoffeeType::LATTE);
-
-			if (it != CoffeeTypePatterns.end()) {
-				return it->second;
-			}
-			else {
-				CoffeeComposition lComposition;
-
-				lComposition += CoffeeComponent::ESPRESSO;
-				lComposition += CoffeeComponent::FOAMED_MILK;
-				lComposition += CoffeeComponent::FOAMED_MILK;
-
-				CoffeeTypePatterns.insert(std::make_pair(CoffeeType::LATTE, lComposition));
-			}
-		}
-
-		template<>
-		const CoffeeComposition& getCoffeePatern<CoffeeType::CAPPUCINO>() {
-			auto it = CoffeeTypePatterns.find(CoffeeType::CAPPUCINO);
-
-			if (it != CoffeeTypePatterns.end()) {
-				return it->second;
-			}
-			else {
-				CoffeeComposition lComposition;
-
-				lComposition += CoffeeComponent::ESPRESSO;
-				lComposition += CoffeeComponent::FOAMED_MILK;
-				lComposition += CoffeeComponent::FOAMED_MILK;
-				lComposition += CoffeeComponent::COCOA;
-
-				CoffeeTypePatterns.insert(std::make_pair(CoffeeType::CAPPUCINO, lComposition));
-			}
-		}
-
-		template<>
-		const CoffeeComposition& getCoffeePatern<CoffeeType::AMERICANO>() {
-			auto it = CoffeeTypePatterns.find(CoffeeType::AMERICANO);
-
-			if (it != CoffeeTypePatterns.end()) {
-				return it->second;
-			}
-			else {
-				CoffeeComposition lComposition;
-
-				lComposition += CoffeeComponent::ESPRESSO;
-				lComposition += CoffeeComponent::WATER;
-				lComposition += CoffeeComponent::WATER;
-
-				CoffeeTypePatterns.insert(std::make_pair(CoffeeType::AMERICANO, lComposition));
-			}
-		}
+		/* Convert coffee type to string */
+		static const std::vector<std::string> CoffeeTypeToString;
 
 		/* Score details */
 		struct OrderScore {
@@ -139,9 +68,63 @@ namespace CMaker {
 		OrderScore countCoffeeScore(const Coffee& _coffeeGiven, const CoffeeComposition& _coffeeExp) const;
 
 	private:
+		/* Coffee type patterns */
+		std::map<CoffeeType, CoffeeComposition> mapCoffeePatterns;
+
+		/* Coffee creators */
+		template<CoffeeType Type>
+		CoffeeComposition getCoffeePatern() {
+			throw std::exception("CoffeePatern not implemented.");
+		}
+
+		template<>
+		CoffeeComposition getCoffeePatern<CoffeeType::ESPRESSO>() {
+			CoffeeComposition lComposition;
+
+			lComposition += CoffeeComponent::ESPRESSO;
+
+			return lComposition;
+		}
+
+		template<>
+		CoffeeComposition getCoffeePatern<CoffeeType::LATTE>() {
+			CoffeeComposition lComposition;
+
+			lComposition += CoffeeComponent::ESPRESSO;
+			lComposition += CoffeeComponent::FOAMED_MILK;
+			lComposition += CoffeeComponent::FOAMED_MILK;
+
+			return lComposition;
+		}
+
+		template<>
+		CoffeeComposition getCoffeePatern<CoffeeType::CAPPUCINO>() {
+			CoffeeComposition lComposition;
+
+			lComposition += CoffeeComponent::ESPRESSO;
+			lComposition += CoffeeComponent::FOAMED_MILK;
+			lComposition += CoffeeComponent::FOAMED_MILK;
+			lComposition += CoffeeComponent::COCOA;
+
+			return lComposition;
+		}
+
+		template<>
+		CoffeeComposition getCoffeePatern<CoffeeType::AMERICANO>() {
+			CoffeeComposition lComposition;
+
+			lComposition += CoffeeComponent::ESPRESSO;
+			lComposition += CoffeeComponent::WATER;
+			lComposition += CoffeeComponent::WATER;
+
+			return lComposition;
+		}
+
+		/* Constructor / Destructor */
 		CoffeeJudge();
 		~CoffeeJudge();
 
+		/* Singleton */
 		CoffeeJudge(const CoffeeJudge&) = delete;
 		CoffeeJudge operator=(const CoffeeJudge&) = delete;
 	};

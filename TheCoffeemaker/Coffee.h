@@ -1,6 +1,7 @@
 #pragma once
 #include <TheCoffeeMaker/Animation.h>
 #include <TheCoffeeMaker/CoffeeCompositionView.h>
+#include <TheCoffeeMaker/CoffeeComposition.h>
 
 namespace CMaker {
 	class CoffeeMachine;
@@ -9,7 +10,7 @@ namespace CMaker {
 		public Animation
 	{
 	public:
-		enum class CoffeeType {
+		enum class CoffeeCupSize {
 			SMALL,
 			BIG
 		};
@@ -18,11 +19,17 @@ namespace CMaker {
 		typedef std::shared_ptr<CMaker::Coffee> SharPtr;
 
 		/* Get coffee type */
-		CoffeeType		getCoffeeType();
+		CoffeeCupSize		getCoffeeType();
 
 		/* Detach, attach coffee cup from machine */
 		void			detachFromMachine();
 		void			attachToMachine(CoffeeMachine* _machine);
+
+		/*Coffee composition getter */
+		const CoffeeComposition& getComposition() const;
+
+		/* Add coffee component */
+		void					addCoffeeComponent(CoffeeComponent _component);
 
 		/* Manage heat */
 		void			setHeat(sf::Uint8 _heat);
@@ -30,7 +37,7 @@ namespace CMaker {
 		sf::Uint8		getHeat();
 
 		/* Constructor / Destructor */
-						Coffee(CoffeeType _type, sf::Vector2f _pos);
+						Coffee(CoffeeCupSize _type, sf::Vector2f _pos);
 						~Coffee();
 
 	private:
@@ -41,7 +48,10 @@ namespace CMaker {
 		CoffeeMachine*				attachedMachine;
 
 		/* Get coffee type */
-		CoffeeType					coffeeType;
+		CoffeeCupSize				coffeeType;
+
+		/* Get coffee composition */
+		CoffeeComposition			coffeeComposition;
 
 		/* Heat managment */
 		static const sf::Uint8	HEAT_LIMIT = 9;

@@ -98,11 +98,11 @@ namespace CMaker {
 		entBin->addDrawQueue(this);
 
 		/* Coffeestacks */
-		entCoffeeStacks.push_back( std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeType::BIG, sf::Vector2f(30.f, 460.f)) );
+		entCoffeeStacks.push_back( std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeCupSize::BIG, sf::Vector2f(30.f, 460.f)) );
 		entCoffeeStacks.back()->setLayer(3);
 		entCoffeeStacks.back()->addDrawQueue(this);
 
-		entCoffeeStacks.push_back(std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeType::SMALL, sf::Vector2f(75.f, 460.f)));
+		entCoffeeStacks.push_back(std::make_unique<CMaker::CoffeeStack>(Coffee::CoffeeCupSize::SMALL, sf::Vector2f(75.f, 460.f)));
 		entCoffeeStacks.back()->setLayer(3);
 		entCoffeeStacks.back()->addDrawQueue(this);
 
@@ -131,6 +131,15 @@ namespace CMaker {
 				return;
 			}
 		}
+
+		// Check if customer is clicked
+		for (auto& lCustomer : entCustomers) {
+			if (lCustomer->getGlobalBounds().contains(pressPoint)) {
+				lCustomer->eventPoke();
+				return;
+			}
+		}
+
 	}
 
 	void GameLevelState::onMouseLeftReleased(sf::Event _event)
@@ -148,6 +157,15 @@ namespace CMaker {
 				dynamic_cast<Coffee*>(draggedObject)->attachToMachine(entCoffeeMachine.get());
 			}
 
+			// If released above customer
+			for (auto& lCustomer : entCustomers) {
+				if (lCustomer->getGlobalBounds().contains(releasePoint)) {
+					Coffee* lCoffee = dynamic_cast<Coffee*>(draggedObject);
+					lCustomer->eventCoffeeConsume(*lCoffee);
+					lCoffee->setToDelete(true);
+				}
+			}
+			
 			draggedObject = nullptr;
 		}
 	}
@@ -165,13 +183,13 @@ namespace CMaker {
 		}
 	}
 	
-	void GameLevelState::spawnCoffee(Coffee::CoffeeType _type, sf::Vector2f _pos)
+	void GameLevelState::spawnCoffee(Coffee::CoffeeCupSize _type, sf::Vector2f _pos)
 	{
 		// Spawn new coffee
 		Coffee* newCoffee;
 		switch (_type) {
-			case Coffee::CoffeeType::BIG: newCoffee = new CoffeeBig(_pos); break;
-			case Coffee::CoffeeType::SMALL: newCoffee = new CoffeeSmall(_pos); break;
+			case Coffee::CoffeeCupSize::BIG: newCoffee = new CoffeeBig(_pos); break;
+			case Coffee::CoffeeCupSize::SMALL: newCoffee = new CoffeeSmall(_pos); break;
 			default: throw std::exception("Coffee type not implemented!"); break;
 		}
 		

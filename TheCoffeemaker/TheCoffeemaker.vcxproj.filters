@@ -226,7 +226,7 @@
       <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="Customer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +369,7 @@
       <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="Customer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

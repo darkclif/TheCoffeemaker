@@ -32,7 +32,7 @@ namespace CMaker {
 		updateDoneBars();
 	
 		// Set coffee cup position 
-		if (_coffee->getCoffeeType() == Coffee::CoffeeType::BIG) {
+		if (_coffee->getCoffeeType() == Coffee::CoffeeCupSize::BIG) {
 			_coffee->setPosition(getPosition() + COFFEE_BIG_POSTION);
 		}
 		else {

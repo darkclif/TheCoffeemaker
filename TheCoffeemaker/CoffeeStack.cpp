@@ -4,19 +4,19 @@
 
 namespace CMaker {
 	/* Accesors */
-	Coffee::CoffeeType CoffeeStack::getCoffeeType()
+	Coffee::CoffeeCupSize CoffeeStack::getCoffeeType()
 	{
 		return type;
 	}
 
 	/* Constructor / Destructor */
-	CoffeeStack::CoffeeStack(Coffee::CoffeeType _type, sf::Vector2f _pos):
+	CoffeeStack::CoffeeStack(Coffee::CoffeeCupSize _type, sf::Vector2f _pos):
 		type{ _type}
 	{
 		// Set texture
 		switch (_type) {
-			case Coffee::CoffeeType::BIG: setTextureEnum(Texture::COFFEE_BIG_STACK); break;
-			case Coffee::CoffeeType::SMALL: setTextureEnum(Texture::COFFEE_SMALL_STACK); break;
+			case Coffee::CoffeeCupSize::BIG: setTextureEnum(Texture::COFFEE_BIG_STACK); break;
+			case Coffee::CoffeeCupSize::SMALL: setTextureEnum(Texture::COFFEE_SMALL_STACK); break;
 			default: throw std::exception("Coffee type not implemented!");  break;
 		}
 

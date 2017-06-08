@@ -54,7 +54,7 @@ namespace CMaker {
 		void							onMouseLeftReleased(sf::Event _event);
 		void							onMouseMoved(sf::Event _event);
 
-		void							spawnCoffee(Coffee::CoffeeType _type, sf::Vector2f _pos);
+		void							spawnCoffee(Coffee::CoffeeCupSize _type, sf::Vector2f _pos);
 		bool							dragObject(sf::Vector2f _pos);
 	};
 

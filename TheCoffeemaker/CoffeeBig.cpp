@@ -3,7 +3,7 @@
 namespace CMaker {
 
 	CoffeeBig::CoffeeBig(sf::Vector2f _pos):
-		Coffee(CoffeeType::BIG, _pos)
+		Coffee(CoffeeCupSize::BIG, _pos)
 	{
 
 	}

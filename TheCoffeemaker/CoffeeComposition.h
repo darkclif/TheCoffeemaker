@@ -11,17 +11,22 @@ namespace CMaker {
 		ESPRESSO,
 		CINAMON,
 		WATER,
-		COCOA
+		COCOA,
+
+		_SIZE
 	};
 
 	class CoffeeComposition
 	{
 	public:
 		CoffeeComposition operator=(const CoffeeComposition& _comp);
-		bool operator==(const CoffeeComposition& _component);
+		bool operator==(const CoffeeComposition& _component) const;
 
 		CoffeeComposition operator+=(CoffeeComponent _component);
 		CoffeeComposition operator-=(CoffeeComponent _component);
+
+		/* Convert coffee type to string */
+		static const std::vector<std::string> CoffeeComponentToString;
 
 		int getComponentCount();
 		bool haveComponent(CoffeeComponent _component);

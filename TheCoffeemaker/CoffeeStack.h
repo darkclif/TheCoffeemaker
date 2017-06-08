@@ -9,15 +9,15 @@ namespace CMaker {
 	{
 	public:
 		/* Coffee size accesor */
-		Coffee::CoffeeType	getCoffeeType();
+		Coffee::CoffeeCupSize	getCoffeeType();
 
 		/* Constructor / Destructor */
-							CoffeeStack(Coffee::CoffeeType _type, sf::Vector2f _pos);
+							CoffeeStack(Coffee::CoffeeCupSize _type, sf::Vector2f _pos);
 							~CoffeeStack();
 
 	private:
 		/* Size of served coffee cup */
-		Coffee::CoffeeType	type;
+		Coffee::CoffeeCupSize	type;
 	};
 
 }

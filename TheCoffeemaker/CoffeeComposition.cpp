@@ -4,6 +4,16 @@
 
 namespace CMaker {
 
+	const std::vector<std::string> CoffeeComposition::CoffeeComponentToString = {
+		"Mleko",
+		"Spienione mleko",
+		"Cukier",
+		"Espresso",
+		"Cynamon",
+		"Woda",
+		"Kakao",
+	};
+
 	CoffeeComposition::CoffeeComposition()
 	{
 	}
@@ -41,7 +51,7 @@ namespace CMaker {
 		return *this;
 	}
 
-	bool CoffeeComposition::operator==(const CoffeeComposition& _component)
+	bool CoffeeComposition::operator==(const CoffeeComposition& _component) const
 	{
 		CoffeeComposition tmpComposition(*this);
 
