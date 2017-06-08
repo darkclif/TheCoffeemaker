@@ -28,6 +28,7 @@ namespace CMaker {
 		, HEAT_BAR
 		, BIN
 		, COFFEE_MACHINE
+		, CUSTOMERS
 	};
 
 	/* Textures managment */

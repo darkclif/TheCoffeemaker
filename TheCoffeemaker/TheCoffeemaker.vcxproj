@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -21,32 +21,32 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C4C0EF69-6709-4482-879C-C26368A24A8E}</ProjectGuid>
     <RootNamespace>TheCoffeemaker</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -74,11 +74,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\1_lib\SFML-2.4.0\include;E:\1_GameDev\Bubus_TheCoffemaker\TheCoffeemaker;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\1_lib\SFML-2.4.0\include;D:\Bubus_TheCoffemaker\TheCoffeemaker;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\1_lib\SFML-2.4.0\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\1_lib\SFML-2.4.0\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -125,13 +125,16 @@
     <ClCompile Include="Bin.cpp" />
     <ClCompile Include="Coffee.cpp" />
     <ClCompile Include="CoffeeBig.cpp" />
+    <ClCompile Include="CoffeeComposition.cpp" />
+    <ClCompile Include="CoffeeJudge.cpp" />
     <ClCompile Include="CoffeeMachine.cpp" />
     <ClCompile Include="CoffeeSmall.cpp" />
     <ClCompile Include="CoffeeStack.cpp" />
+    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Eventable.cpp" />
     <ClCompile Include="GameLevelState.cpp" />
-    <ClCompile Include="HeatBar.cpp" />
+    <ClCompile Include="CoffeeCompositionView.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -171,13 +174,16 @@
     <ClInclude Include="Bin.h" />
     <ClInclude Include="Coffee.h" />
     <ClInclude Include="CoffeeBig.h" />
+    <ClInclude Include="CoffeeComposition.h" />
+    <ClInclude Include="CoffeeJudge.h" />
     <ClInclude Include="CoffeeMachine.h" />
     <ClInclude Include="CoffeeSmall.h" />
     <ClInclude Include="CoffeeStack.h" />
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Eventable.h" />
     <ClInclude Include="GameLevelState.h" />
-    <ClInclude Include="HeatBar.h" />
+    <ClInclude Include="CoffeeCompositionView.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Menu.h" />

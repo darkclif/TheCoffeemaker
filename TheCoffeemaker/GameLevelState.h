@@ -9,6 +9,10 @@
 #include <TheCoffeeMaker/CoffeeStack.h>
 #include <TheCoffeeMaker/CoffeeMachine.h>
 
+#include <TheCoffeeMaker/Customer.h>
+
+#include <TheCoffeeMaker/Game.h>
+
 #include <memory>
 
 namespace CMaker {
@@ -29,6 +33,12 @@ namespace CMaker {
 
 	private:
 		/* Units */
+		int points;
+
+		sf::Text txtPoints;
+
+		std::vector< std::unique_ptr<CMaker::Customer> >	entCustomers;
+
 		std::unique_ptr<CMaker::Unit>	entTable;
 		std::unique_ptr<CMaker::Unit>	entBackground;
 		std::unique_ptr<CMaker::Bin>	entBin;

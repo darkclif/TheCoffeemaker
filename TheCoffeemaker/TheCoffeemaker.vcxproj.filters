@@ -31,30 +31,6 @@
     <Filter Include="Source Files\ResourcesManager\SubManagers">
       <UniqueIdentifier>{d9997806-093a-492f-9b25-0535ec87048f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Entity">
-      <UniqueIdentifier>{cd6d3fd5-5437-4374-b985-ae489dbae60c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity">
-      <UniqueIdentifier>{01f667db-ad4c-499b-8cc0-da2869797b48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity\EntityBase">
-      <UniqueIdentifier>{8865b0a3-4633-48d8-ad7a-46833c8967b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity\EntityBase\AnimEngine">
-      <UniqueIdentifier>{7df98332-fd0e-4c58-ad17-483b03d7aeea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity\EntityBase">
-      <UniqueIdentifier>{c4e768b1-61e4-4d49-8f40-05af314b48be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity\EntityBase\AnimEngine">
-      <UniqueIdentifier>{9c8ba2a8-359e-410c-a3d2-f8f83c1335d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Entity\EntityBase\AnimEngine\Transforms">
-      <UniqueIdentifier>{25a3935e-51a7-43df-9f98-fad75ee5d463}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entity\EntityBase\AnimEngine\Transforms">
-      <UniqueIdentifier>{28251ab0-332b-42bf-8fca-575198f56575}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Menu">
       <UniqueIdentifier>{4c14a9c2-5747-40bc-a4ea-f9d4b430a5f4}</UniqueIdentifier>
     </Filter>
@@ -79,12 +55,39 @@
     <Filter Include="Source Files\Menu\Base">
       <UniqueIdentifier>{4bfada2c-72f3-41cd-af35-38b4943b788f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EntityBase">
+      <UniqueIdentifier>{8865b0a3-4633-48d8-ad7a-46833c8967b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EntityBase\AnimEngine">
+      <UniqueIdentifier>{7df98332-fd0e-4c58-ad17-483b03d7aeea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EntityBase\AnimEngine\Transforms">
+      <UniqueIdentifier>{28251ab0-332b-42bf-8fca-575198f56575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEntities">
+      <UniqueIdentifier>{01f667db-ad4c-499b-8cc0-da2869797b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameEntities">
+      <UniqueIdentifier>{cd6d3fd5-5437-4374-b985-ae489dbae60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EntityBase">
+      <UniqueIdentifier>{c4e768b1-61e4-4d49-8f40-05af314b48be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EntityBase\AnimEngine">
+      <UniqueIdentifier>{9c8ba2a8-359e-410c-a3d2-f8f83c1335d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EntityBase\AnimEngine\Transforms">
+      <UniqueIdentifier>{25a3935e-51a7-43df-9f98-fad75ee5d463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameLogic">
+      <UniqueIdentifier>{1a51ad74-4f17-4fc0-8ab3-25f0f6f629d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic">
+      <UniqueIdentifier>{99a753a5-613c-4404-91f0-ac960298e224}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
@@ -103,58 +106,58 @@
       <Filter>Source Files\ResourcesManager\SubManagers</Filter>
     </ClCompile>
     <ClCompile Include="AnimationEngine.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="Updatable.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine</Filter>
     </ClCompile>
     <ClCompile Include="transFade.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="transMove.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="Cinamon.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="transRotate.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="transGoto.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="transLabel.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="UpdatableUnit.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="transWait.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="Drawable.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="AnimationFactory.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine</Filter>
     </ClCompile>
     <ClCompile Include="SimpleAnimation.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="transScale.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="Eventable.cpp">
-      <Filter>Source Files\Entity\EntityBase</Filter>
+      <Filter>Source Files\EntityBase</Filter>
     </ClCompile>
     <ClCompile Include="StateMachine.cpp">
       <Filter>Source Files\StatesMachine</Filter>
@@ -166,7 +169,7 @@
       <Filter>Source Files\StatesMachine\States</Filter>
     </ClCompile>
     <ClCompile Include="transMoveBy.cpp">
-      <Filter>Source Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Source Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClCompile>
     <ClCompile Include="Tools.cpp">
       <Filter>Source Files\Tools</Filter>
@@ -178,25 +181,22 @@
       <Filter>Source Files\StatesMachine\States</Filter>
     </ClCompile>
     <ClCompile Include="Coffee.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="CoffeeSmall.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="CoffeeStack.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="CoffeeBig.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="HeatBar.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="CoffeeMachine.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="Bin.cpp">
-      <Filter>Source Files\Entity</Filter>
+      <Filter>Source Files\GameEntities</Filter>
     </ClCompile>
     <ClCompile Include="PauseMenu.cpp">
       <Filter>Source Files\Menu</Filter>
@@ -212,6 +212,21 @@
     </ClCompile>
     <ClCompile Include="PageEntry.cpp">
       <Filter>Source Files\Menu\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeJudge.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeComposition.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="CoffeeCompositionView.cpp">
+      <Filter>Source Files\GameEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="Customer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,61 +249,61 @@
       <Filter>Header Files\ResourcesManager\SubManagers</Filter>
     </ClInclude>
     <ClInclude Include="AnimationEngine.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine</Filter>
     </ClInclude>
     <ClInclude Include="Unit.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="Updatable.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine</Filter>
     </ClInclude>
     <ClInclude Include="transFade.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="Transforms.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="transMove.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="Cinamon.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="transRotate.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="transGoto.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="transLabel.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="UpdatableUnit.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="transWait.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="Drawable.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="AnimationFactory.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine</Filter>
     </ClInclude>
     <ClInclude Include="transScale.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="SimpleAnimation.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="Eventable.h">
-      <Filter>Header Files\Entity\EntityBase</Filter>
+      <Filter>Header Files\EntityBase</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine.h">
       <Filter>Header Files\StatesMachine</Filter>
@@ -300,7 +315,7 @@
       <Filter>Header Files\StatesMachine\States</Filter>
     </ClInclude>
     <ClInclude Include="transMoveBy.h">
-      <Filter>Header Files\Entity\EntityBase\AnimEngine\Transforms</Filter>
+      <Filter>Header Files\EntityBase\AnimEngine\Transforms</Filter>
     </ClInclude>
     <ClInclude Include="Tools.h">
       <Filter>Header Files\Tools</Filter>
@@ -312,25 +327,22 @@
       <Filter>Header Files\StatesMachine\States</Filter>
     </ClInclude>
     <ClInclude Include="Coffee.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="CoffeeSmall.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="CoffeeBig.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="CoffeeStack.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="HeatBar.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="Bin.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="CoffeeMachine.h">
-      <Filter>Header Files\Entity</Filter>
+      <Filter>Header Files\GameEntities</Filter>
     </ClInclude>
     <ClInclude Include="PauseMenu.h">
       <Filter>Header Files\Menu</Filter>
@@ -346,6 +358,18 @@
     </ClInclude>
     <ClInclude Include="PageEntry.h">
       <Filter>Header Files\Menu\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeComposition.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeJudge.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="CoffeeCompositionView.h">
+      <Filter>Header Files\GameEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

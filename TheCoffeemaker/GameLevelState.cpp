@@ -1,11 +1,15 @@
 #include "GameLevelState.h"
 
+#include <TheCoffeeMaker/Tools.h>
+
 #include <TheCoffeeMaker/Game.h>
 #include <TheCoffeeMaker/StateMachine.h>
 
 #include <TheCoffeeMaker/CoffeeSmall.h>
 #include <TheCoffeeMaker/CoffeeBig.h>
 #include <TheCoffeeMaker/CoffeeMachine.h>
+
+#include <TheCoffeemaker/ResourceManager.h>
 
 namespace CMaker {
 	/* Manage state */
@@ -45,40 +49,39 @@ namespace CMaker {
 	{
 		State::Update(_time);
 
-		// Check for units to delete
-		auto findIt = entCoffeeList.end();
-		int lCount = 0; // There should not be duplicated entities in queue, but check it
-		bool lFirstSearch = true;
-
-		do {
-			for (auto it = entCoffeeList.begin(); it != entCoffeeList.end(); ++it) {
-				if ((*it)->isToDelete()) {
-					findIt = it;
-
-					if (lFirstSearch) lCount++;
-					if (!lFirstSearch) it = entCoffeeList.end();
-				}
-			}
-
-			if (findIt != entCoffeeList.end()) {
-				entCoffeeList.erase(findIt);
-				lCount--;
-			}
-		} while (lCount > 0);
-
+		Tools::removeIf<Coffee::UniqPtr>(entCoffeeList, [](Coffee::UniqPtr& _elem) { return _elem->isToDelete(); });
 	}
 
 	void GameLevelState::Render()
 	{
 		State::Render();
+
+		this->getGame()->getRender().draw(txtPoints);
 	}
 	
 	/* Initialization */
 	void GameLevelState::initEntities()
 	{
+		/* Customers */
+		entCustomers.resize(3);
+		for (int i = 0; i < 3; i++) {
+			entCustomers[i] = std::make_unique<CMaker::Customer>(sf::Vector2f(70.f + i*240.f, 100.f), i);
+			entCustomers[i]->setLayer(1);
+			entCustomers[i]->addDrawQueue(this);
+			entCustomers[i]->addUpdateQueue(this);
+		}
+		
+		/* Point text */
+		this->txtPoints.setFillColor(sf::Color::Red);
+		this->txtPoints.setOutlineColor(sf::Color::Black);
+		this->txtPoints.setOutlineThickness(1.f);
+		this->txtPoints.setFont(ResourceMgr.getResource(CMaker::Font::DEFAULT));
+		this->txtPoints.setPosition(sf::Vector2f(730.f, 20.f));
+		this->txtPoints.setString("0");
+
 		/* Background */
 		entBackground = std::make_unique<CMaker::Unit>(CMaker::Texture::BACKGROUND, sf::Vector2f(0.f, 0.f));
-		entBackground->setLayer(1);
+		entBackground->setLayer(0);
 		entBackground->fitRenderView(getGame()->getRender());
 		entBackground->addDrawQueue(this);
 
@@ -199,6 +202,7 @@ namespace CMaker {
 	GameLevelState::GameLevelState(Game * _game):
 		State(_game)
 	{
+		points = 0;
 		initEntities();
 	}
 	

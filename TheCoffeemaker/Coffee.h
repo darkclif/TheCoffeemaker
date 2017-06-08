@@ -1,6 +1,6 @@
 #pragma once
 #include <TheCoffeeMaker/Animation.h>
-#include <TheCoffeeMaker/HeatBar.h>
+#include <TheCoffeeMaker/CoffeeCompositionView.h>
 
 namespace CMaker {
 	class CoffeeMachine;
@@ -13,6 +13,9 @@ namespace CMaker {
 			SMALL,
 			BIG
 		};
+
+		typedef std::unique_ptr<CMaker::Coffee> UniqPtr;
+		typedef std::shared_ptr<CMaker::Coffee> SharPtr;
 
 		/* Get coffee type */
 		CoffeeType		getCoffeeType();
@@ -32,7 +35,7 @@ namespace CMaker {
 
 	private:
 		/* Heat indicator */
-		HeatBar*					entHeatBar;
+		//HeatBar*					entHeatBar;
 
 		/* Coffee machine attachedd */
 		CoffeeMachine*				attachedMachine;

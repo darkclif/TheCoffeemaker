@@ -5,7 +5,7 @@
 namespace CMaker {
 
 	/*
-		Static class for insert commonly used animations
+		Static class for inserting commonly used animations
 		to AnimationEngine. 
 		
 		Usage in SimpleAnimation or Animation class:
@@ -15,6 +15,9 @@ namespace CMaker {
 	{
 	public:
 		enum class PredefAnimation {
+			/* Instant alpha to 0 then slow fade to 255 */
+			SLOW_SHOW, 
+			
 			/* Fade to alpha 255 and then to 0 */
 			SHOW_FADE,
 
@@ -74,6 +77,15 @@ namespace CMaker {
 			_engine->addTransform(_num, new transWait(sf::milliseconds(1000)));
 			_engine->addTransform(_num, new transMoveBy(sf::Vector2f(0.f, 10.f), sf::milliseconds(7000)));
 			_engine->addTransform(_num, new transWait(sf::milliseconds(1000)));
+			_engine->addGoto(_num, 1);
+		}
+
+		template<>
+		static void addAnimation<PredefAnimation::SLOW_SHOW>(int  _num, CMaker::AnimationEngine* _engine) {
+			_engine->addAnimation(_num);
+			
+			_engine->addLabel(_num, 1);
+			_engine->addTransform(_num, new transFade(sf::Uint8(255), sf::milliseconds(2000)));
 			_engine->addGoto(_num, 1);
 		}
 

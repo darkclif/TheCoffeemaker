@@ -17,6 +17,7 @@ namespace CMaker {
 		{ Texture::HEAT_BAR,{ "textures/heat_bars.png", false } },
 		
 		{ Texture::BIN,{ "textures/bin.png", false } },
+		{ Texture::CUSTOMERS,{ "textures/customers.png", false } },
 
 		{ Texture::COFFEE_MACHINE,{ "textures/coffee_machine.png", false } },
 

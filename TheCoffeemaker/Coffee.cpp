@@ -33,7 +33,6 @@ namespace CMaker {
 	{
 		if (_heat <= HEAT_LIMIT && _heat >= 1) {
 			heat = _heat;
-			entHeatBar->setHeat(_heat);
 		}
 	}
 
@@ -43,7 +42,6 @@ namespace CMaker {
 		if (heat > HEAT_LIMIT) {
 			heat = HEAT_LIMIT;
 		}
-		entHeatBar->setHeat(heat);
 	}
 
 	sf::Uint8 Coffee::getHeat()
@@ -62,10 +60,6 @@ namespace CMaker {
 		setScale(sf::Vector2f(3.f, 3.f));
 		setOriginAlign(OriginAlign::MIDDLE_CENTER);
 
-		// Setup heat bar
-		auto tmpHeatBar = std::make_unique<HeatBar>(sf::Vector2f(14.f,0.f), heat);
-		this->entHeatBar = tmpHeatBar.get();
-		addChild(std::move(tmpHeatBar));
 	}
 
 	Coffee::~Coffee()
