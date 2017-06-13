@@ -4,8 +4,8 @@ Coffeemaker is a small game in which player have to serve coffee for incoming cu
 
 ## Screenshots
 
-![Screenshot 1](https://github.com/darkclif/TheCoffeemaker/media/screenshot_1.png)
-![Screenshot 2](https://github.com/darkclif/TheCoffeemaker/media/screenshot_2.png)
+![Screenshot 1](https://github.com/darkclif/TheCoffeemaker/blob/master/Media/screenshot_1.png)
+![Screenshot 2](https://github.com/darkclif/TheCoffeemaker/blob/master/Media/screenshot_2.png)
 
 ## Tools
 
